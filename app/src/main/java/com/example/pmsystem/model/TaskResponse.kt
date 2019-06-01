@@ -12,4 +12,5 @@ data class TaskResponse(
 
 	@field:SerializedName("task_id")
 	val taskId: Int? = null
+
 )
