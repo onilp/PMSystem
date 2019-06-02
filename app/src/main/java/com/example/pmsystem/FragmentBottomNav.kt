@@ -32,6 +32,8 @@ class FragmentBottomNav : Fragment() {
         //textMessage = view?.findViewById(R.id.message) ?:
         /*val navView: BottomNavigationView = view!!.findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)*/
-        return inflater.inflate(R.layout.fragment_bottom_nav,container,false)
+        var view =  inflater.inflate(R.layout.fragment_bottom_nav,container,false)
+
+        return view
     }
 }
