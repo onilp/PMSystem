@@ -1,11 +1,93 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/DrawerIcon</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--Change hamberger color-->
+    <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/black</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--Authn page header style-->
+
+    <style name="AuthnTextInputLayoutStyle" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="errorEnabled">true</item>
+    </style>
+
+    <style name="AuthnButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+    </style>
+
+    <style name="AuthMessageTextStyle">
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WidthMatchParentHeightWrapContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WidthWrapContentHeightWrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+
+
+    <style name="HomeLinearLayoutStyle" parent="WidthMatchParentHeightWrapContent">
+        <item name="android:weightSum">4</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="HomeLocationTextViewStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="HomeFromToTextViewStyle" parent="HomeLocationTextViewStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="HomeCityNameTextViewStyle" parent="HomeLocationTextViewStyle">
+        <item name="android:layout_weight">3</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
     </style>
 
     <style name="AppPadding">
@@ -17,3 +99,4 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>
+
