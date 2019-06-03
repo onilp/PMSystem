@@ -4,13 +4,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.example.pmsystem.manager.task.TaskListFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
 import org.jetbrains.anko.toast
 import com.example.pmsystem.R.id.message as message
 
-class MainActivity : AppCompatActivity(),
-    BottomNavClickListener {
+class MainActivity : AppCompatActivity(), BottomNavClickListener {
 
     lateinit var fragmentManager: FragmentManager
 
@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity(),
     private fun isUserLoggedIn() {
         //TODO: check shared preferences (Bin)
         if(true){
-            val homeFragment = HomeFragment.newInstance()
-            fragmentReplaceHandler(homeFragment)
+            val taskListFragment : Fragment = TaskListFragment()
+            fragmentReplaceHandler(taskListFragment)
 
             // display bottom nav drawer if user is logged in
             val bottomNavFragment = BottomNavFragment.newInstance()
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onBottonNavClicked(fragment: Fragment) {
+     override fun onBottonNavClicked(fragment: Fragment) {
         fragmentReplaceHandler(fragment)
     }
 }
