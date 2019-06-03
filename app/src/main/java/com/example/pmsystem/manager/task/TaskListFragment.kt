@@ -22,7 +22,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TaskListFragment : Fragment(),TaskListContract.View ,AnkoLogger{
+class TaskListFragment : Fragment(), TaskListContract.View, AnkoLogger {
 
     lateinit var recyclerView: RecyclerView
     lateinit var myAdapter: TaskListAdapter
@@ -49,24 +49,6 @@ class TaskListFragment : Fragment(),TaskListContract.View ,AnkoLogger{
 
         taskListPresenter.viewIsCreated()
 
-        /*val apiInterface = ApiInterface.getRetrofitInstance().getTaskList()
-        apiInterface.enqueue(object : Callback<TaskListResponse> {
-            override fun onFailure(call: Call<TaskListResponse>, t: Throwable) {
-                Log.e("TaskListError---:", t.message)
-            }
-
-            override fun onResponse(
-                call: Call<TaskListResponse>,
-                response: Response<TaskListResponse>
-            ) {
-                Log.e("TaskListResponse--", response.body()!!.projectTask.toString())
-                myAdapter =
-                    TaskListAdapter(context!!.applicationContext, response.body()!!.projectTask)
-                recyclerView.adapter = myAdapter
-                myAdapter.notifyDataSetChanged()
-            }
-        })*/
-
     }
 
     override fun navigateToCreateTask() {
@@ -74,10 +56,12 @@ class TaskListFragment : Fragment(),TaskListContract.View ,AnkoLogger{
         activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, fg)
             ?.commit()
     }
+
     override fun showTaskListError(message: String?) {
-        Toast.makeText(this.context,message,Toast.LENGTH_LONG).show()
+        Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
     }
-    override fun passDataToAdapter(projectTask: List<TaskListResponse.ProjectTask>){
+
+    override fun passDataToAdapter(projectTask: List<TaskListResponse.ProjectTask>) {
         myAdapter = TaskListAdapter(context!!.applicationContext, projectTask)
         recyclerView.adapter = myAdapter
         myAdapter.notifyDataSetChanged()
