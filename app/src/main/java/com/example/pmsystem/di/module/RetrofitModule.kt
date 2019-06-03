@@ -21,8 +21,8 @@ class RetrofitModule {
             .build()
     }
 
-//    @Provides
-//    internal fun provideAPIInterface(retrofit: Retrofit): ApiInterface{
-//
-//    }
+    @Provides
+    internal fun provideAPIInterface(retrofit: Retrofit): ApiInterface{
+        return retrofit.create(ApiInterface::class.java)
+    }
 }

@@ -7,8 +7,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pmsystem.CreateProjectFragment
-import com.example.pmsystem.HomeFragment
+import com.example.pmsystem.project.CreateProject.CreateProjectFragment
+import com.example.pmsystem.project.Home.HomeFragment
 import com.example.pmsystem.R
 
 class BottomNavFragment : Fragment() {
