@@ -4,13 +4,9 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import com.example.pmsystem.di.component.ApplicationComponent
-import com.example.pmsystem.di.component.DaggerApplicationComponent
-import com.example.pmsystem.network.ApiInterface
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
 import org.jetbrains.anko.toast
-import javax.inject.Inject
 import com.example.pmsystem.R.id.message as message
 
 class MainActivity : AppCompatActivity(),

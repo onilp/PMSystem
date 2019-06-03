@@ -1,5 +1,6 @@
 package com.example.pmsystem.network
 
+import com.example.pmsystem.model.TaskListResponse
 import com.example.pmsystem.model.TaskResponse
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -16,6 +17,9 @@ interface ApiInterface {
                    @Query("task_desc") task_desc : String,
                    @Query("start_date") start_date : String,
                    @Query("end_date") end_date : String) : Call<TaskResponse>
+
+    @GET("pms_project_task_list.php")
+    fun getTaskList() : Call<TaskListResponse>
 
 
     companion object{
