@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import com.example.pmsystem.R
+import com.example.pmsystem.model.RegistrationResponse
 import com.example.pmsystem.network.ApiInterface
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -26,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class BlankFragment : Fragment() {
+class RegistrationFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,12 +64,12 @@ class BlankFragment : Fragment() {
             }else{
                 var apiInterface = ApiInterface.getRetrofitInstance().registerUser(firstname,lastname,email,mobile,password,companysize,yourrole)
 
-                apiInterface.enqueue(object : retrofit2.Callback<String>{
-                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                apiInterface.enqueue(object : retrofit2.Callback<RegistrationResponse>{
+                    override fun onResponse(call: Call<RegistrationResponse>, response: Response<RegistrationResponse>) {
                         Log.e("on response", response.body()!!.toString())
                     }
 
-                    override fun onFailure(call: Call<String>, t: Throwable) {
+                    override fun onFailure(call: Call<RegistrationResponse>, t: Throwable) {
                         Log.e("on error", t.message)
                     }
                 })

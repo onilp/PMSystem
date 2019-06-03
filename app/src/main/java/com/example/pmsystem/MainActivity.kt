@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
-import org.jetbrains.anko.toast
+//import org.jetbrains.anko.toast
 import com.example.pmsystem.R.id.message as message
 
 class MainActivity : AppCompatActivity(),
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity(),
             if(bottomNavFragment != null){
                 fragmentRemoveHandler(bottomNavFragment)
             }else{
-                toast("No bottom nav is removed")
+               // toast("No bottom nav is removed")
             }
         }
     }

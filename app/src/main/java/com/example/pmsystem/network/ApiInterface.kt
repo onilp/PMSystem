@@ -1,6 +1,7 @@
 package com.example.pmsystem.network
 
 import com.example.pmsystem.model.LoginResponse
+import com.example.pmsystem.model.RegistrationResponse
 import com.example.pmsystem.model.SubTaskResponse
 import com.example.pmsystem.model.TaskResponse
 import retrofit2.Call
@@ -44,7 +45,7 @@ interface ApiInterface {
         @Field("company_size") companysize: String,
         @Field("your_role") yourrole: String
 
-    ) : Call<String>
+    ) : Call<RegistrationResponse>
 
 
     @FormUrlEncoded

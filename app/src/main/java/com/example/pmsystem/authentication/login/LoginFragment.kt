@@ -1,6 +1,8 @@
 package com.example.pmsystem.authentication.login
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.text.TextUtils
@@ -36,7 +38,7 @@ class LoginFragment : Fragment() {
         var view : View = inflater.inflate(R.layout.fragment_login, container, false)
         // Inflate the layout for this fragment
         login_sign_in_btn.setOnClickListener {
-            var email = login_email_tiet.setOnClickListener {
+
                 var email = login_email_tiet.text.toString()
                 var password = login_password_tiet.text.toString()
                 if (TextUtils.isEmpty(email)) run {
@@ -50,7 +52,13 @@ class LoginFragment : Fragment() {
                     apiInterface.enqueue(object : retrofit2.Callback<LoginResponse>{
                         override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                             Log.e("on response", response.body()!!.userfirstname)
-
+                            var sharedPreferences : SharedPreferences = activity!!.getSharedPreferences("userPref",Context.MODE_PRIVATE)
+                            sharedPreferences.edit().putString("userid",response.body()!!.userid)
+                            sharedPreferences.edit().putString("userfirstname",response.body()!!.userfirstname)
+                            sharedPreferences.edit().putString("userlastname",response.body()!!.userlastname)
+                            sharedPreferences.edit().putString("useremail",response.body()!!.useremail)
+                            sharedPreferences.edit().putString("appapikey",response.body()!!.appapikey)
+                            sharedPreferences.apply { sharedPreferences }
 
                         }
 
@@ -58,7 +66,7 @@ class LoginFragment : Fragment() {
                             Log.e("on error", t.message)
                         }
                     })
-                }
+
             }
         }
         return view

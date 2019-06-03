@@ -1,4 +1,8 @@
 package com.example.pmsystem.model
 
-class RegistrationResponse {
-}
+import com.google.gson.annotations.SerializedName
+
+data class RegistrationResponse(
+    val msg: List<String>
+
+)
