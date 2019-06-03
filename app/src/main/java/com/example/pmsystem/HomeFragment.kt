@@ -19,8 +19,7 @@ class HomeFragment : Fragment() {
 
     companion object{
         fun newInstance(): HomeFragment{
-            val homeFragment = HomeFragment()
-            return homeFragment
+            return HomeFragment()
         }
     }
 

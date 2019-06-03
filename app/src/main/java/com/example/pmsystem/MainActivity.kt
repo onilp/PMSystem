@@ -4,9 +4,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.example.pmsystem.di.component.ApplicationComponent
+import com.example.pmsystem.di.component.DaggerApplicationComponent
+import com.example.pmsystem.network.ApiInterface
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
 import org.jetbrains.anko.toast
+import javax.inject.Inject
 import com.example.pmsystem.R.id.message as message
 
 class MainActivity : AppCompatActivity(),
@@ -43,7 +47,7 @@ class MainActivity : AppCompatActivity(),
     private fun isUserLoggedIn() {
         //TODO: check shared preferences (Bin)
         if(true){
-            val homeFragment = HomeFragment.newInstance()
+            val homeFragment: Fragment = HomeFragment.newInstance()
             fragmentReplaceHandler(homeFragment)
 
             // display bottom nav drawer if user is logged in
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity(),
         }else{
             fragmentManager = supportFragmentManager
             // remove bottom nav fragment if it is on the screen and user is not logged in
-            val bottomNavFragment = fragmentManager.findFragmentById(R.id.fragment_bottom_nav)
+            val bottomNavFragment: Fragment? = fragmentManager.findFragmentById(R.id.fragment_bottom_nav)
             if(bottomNavFragment != null){
                 fragmentRemoveHandler(bottomNavFragment)
             }else{
