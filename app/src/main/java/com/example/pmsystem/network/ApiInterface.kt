@@ -2,6 +2,7 @@ package com.example.pmsystem.network
 
 import com.example.pmsystem.model.CreateProjectResponse
 import com.example.pmsystem.model.ProjectListResponse
+import com.example.pmsystem.model.TaskListResponse
 import com.example.pmsystem.model.TaskResponse
 import io.reactivex.Observable
 import retrofit2.Call
@@ -34,6 +35,9 @@ interface ApiInterface {
         @Query("start_date") start_date: String,
         @Query("end_date") end_date: String
     ): Observable<CreateProjectResponse>
+    @GET("pms_project_task_list.php")
+    fun getTaskList() : Call<TaskListResponse>
+
 
     companion object {
         val BASE_URL = "http://rjtmobile.com/aamir/pms/android-app/"

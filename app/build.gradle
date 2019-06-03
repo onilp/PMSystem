@@ -10,7 +10,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.pmsystem"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -23,21 +23,25 @@ android {
         }
     }
     flavorDimensions "testing"
-    productFlavors{
-        manager{
+    productFlavors {
+        manager {
             dimension "testing"
             applicationIdSuffix ".manager"
             versionNameSuffix "-manager"
         }
-        developer{
+        developer {
             dimension "testing"
             applicationIdSuffix ".developer"
             versionNameSuffix "-developer"
+
         }
+
     }
+
+
 }
 
-ext.anko_version='0.10.8'
+ext.anko_version = '0.10.8'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
