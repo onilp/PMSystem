@@ -13,6 +13,8 @@ import javax.inject.Singleton
 interface ApplicationComponent {
     fun injectRetrofit(mainActivity: MainActivity)
 
+    fun injectApiInterface(mainActivity: MainActivity)
+
     fun injectSharedPreferences(mainActivity: MainActivity)
 
     fun injectContext(mainActivity: MainActivity)
