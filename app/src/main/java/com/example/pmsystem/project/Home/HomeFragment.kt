@@ -19,16 +19,18 @@ import com.example.pmsystem.di.module.RetrofitModule
 import com.example.pmsystem.network.ApiInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), HomeContract.View {
+//    @Inject
+//    lateinit var retrofit: RetrofitModule
+
     @Inject
-    lateinit var retrofit: RetrofitModule
     lateinit var apiInterface: ApiInterface
 
     lateinit var homePresenter: HomePresenter
     lateinit var projectAdapter: ProjectRecyclerViewAdapter
+    lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,10 +43,9 @@ class HomeFragment : Fragment(), HomeContract.View {
         val project_recyclerview = rootView.findViewById(R.id.project_recyclerview) as RecyclerView
         project_recyclerview.layoutManager = LinearLayoutManager(context)
 
-        DaggerApplicationComponent.builder().retrofitModule(RetrofitModule()).build().injectRetrofit(activity as MainActivity)
-
-        //TODO log retrofit
-        apiInterface = retrofit.provideRetrofitInstance().create(ApiInterface::class.java)
+        applicationComponent = DaggerApplicationComponent.builder().retrofitModule(RetrofitModule).build()
+        applicationComponent.inject(this)
+        
         apiInterface.getProjectList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

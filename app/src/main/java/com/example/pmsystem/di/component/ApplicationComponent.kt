@@ -1,21 +1,14 @@
 package com.example.pmsystem.di.component
 
-import com.example.pmsystem.Application
 import com.example.pmsystem.MainActivity
-import com.example.pmsystem.di.module.AppModule
 import com.example.pmsystem.di.module.RetrofitModule
 import com.example.pmsystem.di.module.SharedPreferencesModule
+import com.example.pmsystem.project.Home.HomeFragment
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(RetrofitModule::class, SharedPreferencesModule::class, AppModule::class))
+@Component(modules = arrayOf(RetrofitModule::class))
 interface ApplicationComponent {
-    fun injectRetrofit(mainActivity: MainActivity)
-
-    fun injectApiInterface(mainActivity: MainActivity)
-
-    fun injectSharedPreferences(mainActivity: MainActivity)
-
-    fun injectContext(mainActivity: MainActivity)
+    fun inject(homeFragment: HomeFragment)
 }
