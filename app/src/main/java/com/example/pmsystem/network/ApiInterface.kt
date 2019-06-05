@@ -1,10 +1,6 @@
 package com.example.pmsystem.network
 
-import com.example.pmsystem.model.LoginResponse
-import com.example.pmsystem.model.RegistrationResponse
-import com.example.pmsystem.model.SubTaskResponse
-import com.example.pmsystem.model.TaskListResponse
-import com.example.pmsystem.model.TaskResponse
+import com.example.pmsystem.model.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,7 +22,7 @@ interface ApiInterface {
 
 
 
-    @GET("pms_create_task.php?")
+    @GET("pms_create_sub_task.php?")
     fun createSubTask(@Query ("project_id") project_id : String,
                    @Query("task_id") task_id : String,
                    @Query("sub_task_name") sub_task_name : String,
@@ -36,6 +32,9 @@ interface ApiInterface {
                    @Query("end_date") end_date : String) : Call<SubTaskResponse>
 
 
+
+    @GET("pms_project_sub_task_list.php?")
+    fun getSubTaskList() : Call<SubTaskListResponse>
 
 
     @FormUrlEncoded

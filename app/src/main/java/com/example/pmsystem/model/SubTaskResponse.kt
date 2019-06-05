@@ -1,4 +1,5 @@
 package com.example.pmsystem.model
 
-class SubTaskResponse {
-}
+data class SubTaskResponse(
+    val msg: List<String>
+)
