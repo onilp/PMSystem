@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/logib_fragment"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+            style="@style/AppPadding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/login_email_til"
+                style="@style/AuthnTextInputLayoutStyle"
+                android:hint="@string/email"
+
+                app:layout_constraintBottom_toTopOf="@+id/login_password_til"
+                app:layout_constraintTop_toBottomOf="parent"
+                tools:ignore="MissingConstraints">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/login_email_tiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/login_password_til"
+                style="@style/AuthnTextInputLayoutStyle"
+                android:hint="@string/password"
+                app:layout_constraintTop_toBottomOf="@+id/login_email_til"
+                tools:ignore="MissingConstraints">
+
+            <android.support.design.widget.TextInputEditText
+                    android:id="@+id/login_password_tiet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.button.MaterialButton
+                android:id="@+id/login_sign_in_btn"
+                style="@style/AuthnButtonStyle"
+                android:text="SIGN IN"
+                app:layout_constraintTop_toBottomOf="@+id/login_password_til"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="230dp" />
+
+
+        <TextView
+                android:id="@+id/login_forgot_password_r_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/forgot_password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_sign_in_btn" />
+
+        <TextView
+                android:id="@+id/login_no_account_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/don_t_have_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_forgot_password_r_tv" />
+
+        <android.support.design.button.MaterialButton
+                android:id="@+id/login_create_account_btn"
+                style="@style/AuthnButtonStyle"
+                android:text="@string/create_account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_no_account_tv"
+                tools:ignore="MissingConstraints" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
+
