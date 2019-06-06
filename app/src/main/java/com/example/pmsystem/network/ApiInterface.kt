@@ -1,6 +1,9 @@
 package com.example.pmsystem.network
 
 import com.example.pmsystem.model.*
+import com.example.pmsystem.model.createproject.CreateProjectResponse
+import com.example.pmsystem.model.project.ProjectListResponse
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,8 +23,6 @@ interface ApiInterface {
     fun getTaskList() : Call<TaskListResponse>
 
 
-
-
     @GET("pms_create_sub_task.php?")
     fun createSubTask(@Query ("project_id") project_id : String,
                    @Query("task_id") task_id : String,
@@ -31,6 +32,17 @@ interface ApiInterface {
                    @Query("start_date") start_date : String,
                    @Query("end_date") end_date : String) : Call<SubTaskResponse>
 
+    @GET("pms_projects.php?")
+    fun getProjectList(): Observable<ProjectListResponse>
+
+    @GET("pms_create_project.php?")
+    fun createProject(
+        @Query("project_name") project_name: String,
+        @Query("project_status") project_status: String,
+        @Query("project_desc") project_desc: String,
+        @Query("start_date") start_date: String,
+        @Query("end_date") end_date: String
+    ): Observable<CreateProjectResponse>
 
 
     @GET("pms_project_sub_task_list.php?")
@@ -47,7 +59,6 @@ interface ApiInterface {
         @Field("password") password: String,
         @Field("company_size") companysize: String,
         @Field("your_role") yourrole: String
-
     ) : Call<RegistrationResponse>
 
 
@@ -56,12 +67,7 @@ interface ApiInterface {
     fun login(
         @Field("email") email: String,
         @Field("password") password: String
-
-
     ) : Call<LoginResponse>
-
-
-
 
     companion object{
         val BASE_URL = "http://rjtmobile.com/aamir/pms/android-app/"

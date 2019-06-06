@@ -1,4 +1,4 @@
-package com.example.pmsystem.project.createproject
+package com.example.pmsystem.project.CreateProject
 
 interface CreateProjectContract {
     interface View{

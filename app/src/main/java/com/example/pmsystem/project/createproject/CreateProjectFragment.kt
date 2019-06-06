@@ -1,4 +1,4 @@
-package com.example.pmsystem.project.createproject
+package com.example.pmsystem.project.CreateProject
 
 
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.example.pmsystem.R
-import com.example.pmsystem.project.home.HomeFragment
+import com.example.pmsystem.project.Home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_create_project.*
 import org.jetbrains.anko.toast
 
