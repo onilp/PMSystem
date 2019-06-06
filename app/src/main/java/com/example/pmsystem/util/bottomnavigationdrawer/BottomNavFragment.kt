@@ -30,9 +30,7 @@ class BottomNavFragment : Fragment() {
 
     companion object {
         fun newInstance(): BottomNavFragment {
-            val bottomNavFragment =
-                BottomNavFragment()
-            return bottomNavFragment
+            return BottomNavFragment()
         }
     }
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:background="@android:color/holo_green_dark"
+    android:paddingRight="10dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/project_name_tv"
+                style="@style/ProjectCardItem"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/project_status_tv"
+                style="@style/ProjectCardItem" />
+
+            <TextView
+                android:id="@+id/project_desc_tv"
+                style="@style/ProjectCardItem" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/ProjectCardItem"
+                    android:layout_weight="0.5"
+                    android:text="@string/start_date"/>
+
+                <TextView
+                    style="@style/ProjectCardItem"
+                    android:layout_weight="0.5"
+                    android:text="@string/end_date"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/start_date_tv"
+                    style="@style/ProjectCardItem"
+                    android:layout_weight="0.5"/>
+
+                <TextView
+                    android:id="@+id/end_date_tv"
+                    style="@style/ProjectCardItem"
+                    android:layout_weight="0.5"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>

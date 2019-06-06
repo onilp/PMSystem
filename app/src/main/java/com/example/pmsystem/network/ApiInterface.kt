@@ -1,9 +1,11 @@
 package com.example.pmsystem.network
 
-import com.example.pmsystem.model.CreateProjectResponse
-import com.example.pmsystem.model.ProjectListResponse
+import com.example.pmsystem.model.createproject.CreateProjectResponse
+import com.example.pmsystem.model.project.ProjectListResponse
 import com.example.pmsystem.model.TaskListResponse
 import com.example.pmsystem.model.TaskResponse
+import com.example.pmsystem.model.employee.EmployeeResponse
+import com.example.pmsystem.model.subtasklist.SubTaskListResponse
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -35,6 +37,12 @@ interface ApiInterface {
         @Query("start_date") start_date: String,
         @Query("end_date") end_date: String
     ): Observable<CreateProjectResponse>
+
+    @GET("pms_view_subtask.php?")
+    fun getSubTask(@Query("user_id") user_id: String, @Query("taskid") taskid: String): Observable<SubTaskListResponse>
+
+    @GET("pms_employee_list.php")
+    fun getEmployeeList(): Observable<EmployeeResponse>
 
     @GET("pms_project_task_list.php")
     fun getTaskList() : Call<TaskListResponse>

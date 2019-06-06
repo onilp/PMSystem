@@ -1,16 +1,17 @@
 package com.example.pmsystem.project.Home
 
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pmsystem.Application
-import com.example.pmsystem.MainActivity
+import com.example.pmsystem.MyApplication
 import com.example.pmsystem.adapter.ProjectRecyclerViewAdapter
 import com.example.pmsystem.R
 import com.example.pmsystem.di.component.ApplicationComponent
@@ -22,15 +23,16 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeFragment : Fragment(), HomeContract.View {
-//    @Inject
-//    lateinit var retrofit: RetrofitModule
 
     @Inject
     lateinit var apiInterface: ApiInterface
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
     lateinit var homePresenter: HomePresenter
     lateinit var projectAdapter: ProjectRecyclerViewAdapter
-    lateinit var applicationComponent: ApplicationComponent
+    lateinit var myApplication: MyApplication
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,13 +41,16 @@ class HomeFragment : Fragment(), HomeContract.View {
 
         val rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
-        homePresenter = HomePresenter.newInstance()
-        val project_recyclerview = rootView.findViewById(R.id.project_recyclerview) as RecyclerView
-        project_recyclerview.layoutManager = LinearLayoutManager(context)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.project)
 
-        applicationComponent = DaggerApplicationComponent.builder().retrofitModule(RetrofitModule).build()
-        applicationComponent.inject(this)
-        
+        homePresenter = HomePresenter.newInstance()
+
+        val projectRecyclerView = rootView.findViewById(R.id.project_recyclerview) as RecyclerView
+        projectRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        myApplication = MyApplication()
+        myApplication.getComponent().inject(this)
+
         apiInterface.getProjectList()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -55,11 +60,10 @@ class HomeFragment : Fragment(), HomeContract.View {
                     context!!,
                     it?.projects!!.toList()
                 )
-                project_recyclerview.adapter = projectAdapter
+                projectRecyclerView.adapter = projectAdapter
             }, { it ->
-                Log.e("Error", it.message)
+                Log.e("Project response error", it.message)
             })
-
 
         return rootView
     }
