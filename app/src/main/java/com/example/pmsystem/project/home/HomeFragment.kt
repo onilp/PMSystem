@@ -1,83 +1,75 @@
-package com.example.pmsystem.project.Home
+package com.example.pmsystem.project.home
 
-
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pmsystem.MyApplication
-import com.example.pmsystem.adapter.ProjectRecyclerViewAdapter
 import com.example.pmsystem.R
-import com.example.pmsystem.di.component.ApplicationComponent
-import com.example.pmsystem.di.component.DaggerApplicationComponent
-import com.example.pmsystem.di.module.RetrofitModule
-import com.example.pmsystem.network.ApiInterface
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.example.pmsystem.adapter.ProjectRecyclerViewAdapter
+import com.example.pmsystem.model.project.ProjectListResponse
+import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
-class HomeFragment : Fragment(), HomeContract.View {
-
-    @Inject
-    lateinit var apiInterface: ApiInterface
+class HomeFragment : Fragment() {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
 
-    lateinit var homePresenter: HomePresenter
-    lateinit var projectAdapter: ProjectRecyclerViewAdapter
-    lateinit var myApplication: MyApplication
+    private lateinit var rootView: View
+    private lateinit var projectAdapter: ProjectRecyclerViewAdapter
+    private lateinit var homeViewModel: HomeViewModel
+    lateinit var projectListLiveData: MutableLiveData<ProjectListResponse>
+    lateinit var projectRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_home, container, false)
+        rootView = inflater.inflate(R.layout.fragment_home, container, false)
 
-        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.project)
+        init()
 
-        homePresenter = HomePresenter.newInstance()
-
-        val projectRecyclerView = rootView.findViewById(R.id.project_recyclerview) as RecyclerView
-        projectRecyclerView.layoutManager = LinearLayoutManager(context)
-
-        myApplication = MyApplication()
-        myApplication.getComponent().inject(this)
-
-        apiInterface.getProjectList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ it ->
-                Log.d("Project response", it.toString())
+        projectListLiveData = homeViewModel.fetchProject()
+        //subscribe to view model
+        projectListLiveData.observe(this, Observer {
+            if(it == null){
+                no_project_tv.visibility = View.VISIBLE
+                projectRecyclerView.visibility = View.GONE
+            }else {
+                no_project_tv.visibility = View.GONE
+                projectRecyclerView.visibility = View.VISIBLE
                 projectAdapter = ProjectRecyclerViewAdapter(
-                    context!!,
-                    it?.projects!!.toList()
+                    context!!, it.projects.toList()
                 )
                 projectRecyclerView.adapter = projectAdapter
-            }, { it ->
-                Log.e("Project response error", it.message)
-            })
-
+            }
+        })
         return rootView
+    }
+
+    private fun init() {
+        //set toolbar title
+        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.project)
+
+        projectRecyclerView = rootView.findViewById(R.id.project_recyclerview) as RecyclerView
+        projectRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
 
     companion object {
         fun newInstance(): HomeFragment {
             return HomeFragment()
         }
-    }
-
-    private fun getProjectList() {
-//        homePresenter.getProjects()
-//        component = DaggerApplicationComponent.builder().retrofitModule(RetrofitModule()).build()
-//        component.injectRetrofit(view)
     }
 
 }
