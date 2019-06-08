@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/subtaskid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dip"
+                android:paddingTop="6dip"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/taskid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dip"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/projectid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/subtaskname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/subtaskstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/subtaskdesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="2dip"
+                android:textColor="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/startdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/endstart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#5d5d5d"
+                android:textStyle="bold" />
+
+
+
+
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -7,8 +7,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pmsystem.CreateProjectFragment
-import com.example.pmsystem.HomeFragment
+import com.example.pmsystem.project.createproject.CreateProjectFragment
+import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.R
 
 class BottomNavFragment : Fragment() {
@@ -30,9 +30,7 @@ class BottomNavFragment : Fragment() {
 
     companion object {
         fun newInstance(): BottomNavFragment {
-            val bottomNavFragment =
-                BottomNavFragment()
-            return bottomNavFragment
+            return BottomNavFragment()
         }
     }
 
