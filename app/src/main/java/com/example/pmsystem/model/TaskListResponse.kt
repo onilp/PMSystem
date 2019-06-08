@@ -1,6 +1,6 @@
 package com.example.pmsystem.model
 
-
+import java.io.Serializable
 import com.google.gson.annotations.SerializedName
 
 data class TaskListResponse(

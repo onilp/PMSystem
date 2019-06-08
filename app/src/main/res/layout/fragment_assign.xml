@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/AppPadding">
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_project_list"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_task_list"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_project_list"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_subtask_list"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_task_list"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Assign"
+        app:layout_constraintTop_toBottomOf="@id/spinner_subtask_list"
+        style="@style/AppButton"
+        android:textAllCaps="false"
+        android:id="@+id/btn_assign"/>
+
+</android.support.constraint.ConstraintLayout>

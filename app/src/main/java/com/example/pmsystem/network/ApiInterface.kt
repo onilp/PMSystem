@@ -1,7 +1,6 @@
 package com.example.pmsystem.network
 
-import com.example.pmsystem.model.TaskListResponse
-import com.example.pmsystem.model.TaskResponse
+import com.example.pmsystem.model.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,6 +19,24 @@ interface ApiInterface {
 
     @GET("pms_project_task_list.php")
     fun getTaskList() : Call<TaskListResponse>
+    //fun getTaskList() : Call<TaskListAssignResponse>
+
+    @GET("pms_create_project_team.php")
+    fun assignPTS(@Query("project_id") project_id : String, @Query("team_member_userid") team_member_userid : String, @Query("task_id") task_id : String, @Query("subtask_id") subtask_id : String) : Call<AssignPTSResponse>
+
+    @GET("pms_assign_task_project.php")
+    fun assignTask(@Query("task_id") task_id : String, @Query("project_id") project_id : String, @Query("team_member_userid") team_member_userid: String) : Call<AssignTasksResponse>
+
+    @GET("pms_assign_sub_task_project.php")
+    fun assignSubTasks(@Query("subtask_id") subtask_id :String, @Query("task_id") task_id : String, @Query("project_id") project_id : String, @Query("team_member_userid") team_member_userid: String) : Call<AssignTasksResponse>
+
+
+
+
+
+
+
+
 
 
     companion object{
