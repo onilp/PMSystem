@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.example.pmsystem.R
 import com.example.pmsystem.model.project.Project
 import kotlinx.android.synthetic.main.list_project.view.*
-import org.jetbrains.anko.toast
 
 class ProjectRecyclerViewAdapter(private val context: Context, private val projectList: List<Project>):
     RecyclerView.Adapter<ProjectRecyclerViewAdapter.ViewHolder>() {

@@ -50,7 +50,7 @@ class SubTaskListFragment : Fragment(), SubTaskListContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.recyclerViewTaskList)
+        recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 
         subtaskListPresenter.viewIsCreated()
