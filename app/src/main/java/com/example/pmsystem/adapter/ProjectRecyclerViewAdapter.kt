@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.model.project.Project
 import kotlinx.android.synthetic.main.list_project.view.*
@@ -13,9 +12,14 @@ import org.jetbrains.anko.toast
 
 class ProjectRecyclerViewAdapter(private val context: Context, private val projectList: List<Project>):
     RecyclerView.Adapter<ProjectRecyclerViewAdapter.ViewHolder>() {
+
+    lateinit var onItemClick: ((Project) -> Unit)
+
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.list_project, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {
@@ -23,17 +27,24 @@ class ProjectRecyclerViewAdapter(private val context: Context, private val proje
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bind(projectList.get(position))
+        viewHolder.bind(projectList[position])
 
         viewHolder.itemView.setOnClickListener {
-            context.toast("click")
+            onItemClick.invoke(projectList[position])
         }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         fun bind(project: Project) {
             itemView.project_name_tv.text = project.projectname
-            itemView.project_status_tv.text = project.projectstatus
+            if(project.projectstatus == "1"){
+                itemView.project_status_tv.text = itemView.context.getString(R.string.start_a_project)
+            }else if(project.projectstatus == "2"){
+                itemView.project_status_tv.text = itemView.context.getString(R.string.not_complete)
+            }else{
+                itemView.project_status_tv.text = itemView.context.getString(R.string.completed)
+            }
             itemView.project_desc_tv.text = project.projectdesc
             itemView.start_date_tv.text = project.startdate
             itemView.end_date_tv.text = project.endstart

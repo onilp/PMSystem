@@ -65,4 +65,8 @@
     <string name="sub_task_status">Sub Task Status</string>
     <string name="project">Project</string>
     <string name="no_project">No Project</string>
+    <string name="start_a_project">Start a project</string>
+    <string name="not_complete">Not Complete</string>
+    <string name="completed">Completed</string>
+    <string name="creating_project">Creating project...</string>
 </resources>

@@ -50,19 +50,6 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="WidthMatchParentHeightWrapContent">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <style name="WidthWrapContentHeightWrapContent">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-
-
-
     <style name="HomeLinearLayoutStyle" parent="WidthMatchParentHeightWrapContent">
         <item name="android:weightSum">4</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>
@@ -97,6 +84,16 @@
     <style name="AppButton">
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="WidthMatchParentHeightWrapContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WidthWrapContentHeightWrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="ProjectCardItem">

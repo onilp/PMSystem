@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".project.home.HomeFragment">
 
     <TextView
+        android:id="@+id/no_project_tv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="24sp"
-        android:textColor="@android:color/black"
-        android:visibility="gone"
         android:gravity="center"
         android:text="@string/no_project"
-        android:id="@+id/no_project_tv"/>
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/project_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        android:id="@+id/project_recyclerview" />
+        android:visibility="visible" />
 
-</FrameLayout>
+</LinearLayout>
