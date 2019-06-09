@@ -11,11 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.adapter.SubTaskListAdapter
-import com.example.pmsystem.adapter.TaskListAdapter
-import com.example.pmsystem.manager.task.CreateTaskFragment
-import com.example.pmsystem.manager.task.TaskListPresenter
 import com.example.pmsystem.model.SubTaskListResponse
-import kotlinx.android.synthetic.main.fragment_create_sub_task.view.*
 import kotlinx.android.synthetic.main.fragment_sub_task_list.view.*
 
 

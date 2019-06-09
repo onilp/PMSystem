@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -30,7 +31,6 @@ class TaskListFragment : Fragment(),  AnkoLogger {
 
     lateinit var recyclerView: RecyclerView
     lateinit var myAdapter: TaskListAdapter
-    lateinit var taskListPresenter: TaskListPresenter
     private var tasks : ArrayList<TaskListResponse.ProjectTask> = ArrayList()
 
     override fun onCreateView(
@@ -39,8 +39,8 @@ class TaskListFragment : Fragment(),  AnkoLogger {
         savedInstanceState: Bundle?
     ): View? {
         var view = inflater.inflate(R.layout.fragment_task_list, container, false)
-//        taskListPresenter = TaskListPresenter(this)
-//            taskListPresenter.buttonClicked()
+
+        (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.task_list)
             var taskListViewModel = ViewModelProviders.of(this).get(TaskListViewModel::class.java)
             var taskList : LiveData<List<TaskListResponse.ProjectTask>> = taskListViewModel.requestTaskList()
             taskList.observe(this, Observer {it->
@@ -67,25 +67,5 @@ class TaskListFragment : Fragment(),  AnkoLogger {
         recyclerView = view.findViewById(R.id.recyclerViewTaskList)
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 
-//        taskListPresenter.viewIsCreated()
-
     }
-
-   /* override fun navigateToCreateTask() {
-        val fg: Fragment = CreateTaskFragment()
-        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, fg)
-            ?.commit()
-    }
-
-    override fun showTaskListError(message: String?) {
-        Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
-    }
-
-    override fun passDataToAdapter(projectTask: List<TaskListResponse.ProjectTask>) {
-        myAdapter = TaskListAdapter(context!!.applicationContext, projectTask)
-        recyclerView.adapter = myAdapter
-        myAdapter.notifyDataSetChanged()
-    }*/
-
-
 }
