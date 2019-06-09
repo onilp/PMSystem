@@ -2,10 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingLeft="10dp"
-    android:background="@android:color/holo_green_dark"
-    android:paddingRight="10dp">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -22,7 +19,11 @@
             <TextView
                 android:id="@+id/project_name_tv"
                 style="@style/ProjectCardItem"
-                android:textSize="18sp" />
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/project_status_tv"
@@ -30,40 +31,43 @@
 
             <TextView
                 android:id="@+id/project_desc_tv"
-                style="@style/ProjectCardItem" />
+                style="@style/ProjectCardItem"
+                android:layout_width="match_parent"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <TextView
                     style="@style/ProjectCardItem"
+                    android:layout_width="0dp"
                     android:layout_weight="0.5"
-                    android:text="@string/start_date"/>
+                    android:text="@string/start_date" />
 
                 <TextView
                     style="@style/ProjectCardItem"
+                    android:layout_width="0dp"
                     android:layout_weight="0.5"
-                    android:text="@string/end_date"/>
+                    android:text="@string/end_date" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <TextView
                     android:id="@+id/start_date_tv"
                     style="@style/ProjectCardItem"
-                    android:layout_weight="0.5"/>
+                    android:layout_weight="0.5" />
 
                 <TextView
                     android:id="@+id/end_date_tv"
                     style="@style/ProjectCardItem"
-                    android:layout_weight="0.5"/>
+                    android:layout_weight="0.5" />
             </LinearLayout>
 
         </LinearLayout>
