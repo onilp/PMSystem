@@ -12,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeViewModel : ViewModel() {
-
     @Inject
     lateinit var apiInterface: ApiInterface
 

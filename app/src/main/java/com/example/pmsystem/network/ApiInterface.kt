@@ -22,8 +22,8 @@ interface ApiInterface {
                    @Query("end_date") end_date : String) : Call<TaskResponse>
 
     @GET("pms_project_task_list.php")
-    fun getTaskList() : Call<TaskListResponse>
-    //fun getTaskList() : Call<TaskListAssignResponse>
+    fun getTaskList() : Observable<TaskListResponse>
+    //fun getTaskList() : Call<TaskListResponse>
 
     @GET("pms_create_project_team.php")
     fun assignPTS(@Query("project_id") project_id : String, @Query("team_member_userid") team_member_userid : String, @Query("task_id") task_id : String, @Query("subtask_id") subtask_id : String) : Call<AssignPTSResponse>
