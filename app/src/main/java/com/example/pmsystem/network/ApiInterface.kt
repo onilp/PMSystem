@@ -33,15 +33,6 @@ interface ApiInterface {
     @GET("pms_assign_sub_task_project.php")
     fun assignSubTasks(@Query("subtask_id") subtask_id :String, @Query("task_id") task_id : String, @Query("project_id") project_id : String, @Query("team_member_userid") team_member_userid: String) : Call<AssignTasksResponse>
 
-
-
-
-
-
-
-
-
-
     @GET("pms_create_sub_task.php?")
     fun createSubTask(@Query ("project_id") project_id : String,
                    @Query("task_id") task_id : String,
