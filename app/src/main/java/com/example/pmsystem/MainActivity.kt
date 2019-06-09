@@ -59,15 +59,9 @@ class MainActivity : AppCompatActivity(),
 
     // check if user is already logged in
     private fun isUserLoggedIn() {
-//        if(sharedPreferences.getString("userid", "") != ""){
-        if(true){
-//            val homeFragment: Fragment = HomeFragment.newInstance()
-//            fragmentReplaceHandler(homeFragment)
-//
-//
-
-            loginFragment = LoginFragment.newInstance()
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit()
+        if(sharedPreferences.getString("userid", "") != ""){
+            val homeFragment: Fragment = HomeFragment.newInstance()
+            fragmentReplaceHandler(homeFragment)
 
             // display bottom nav drawer if user is logged in
             val bottomNavFragment = BottomNavFragment.newInstance()
