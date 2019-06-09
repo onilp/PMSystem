@@ -5,6 +5,7 @@ import com.example.pmsystem.model.createproject.CreateProjectResponse
 import com.example.pmsystem.model.project.ProjectListResponse
 import io.reactivex.Observable
 import com.example.pmsystem.model.*
+import com.example.pmsystem.model.employee.EmployeeResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -78,6 +79,9 @@ interface ApiInterface {
         @Field("email") email: String,
         @Field("password") password: String
     ) : Call<LoginResponse>
+
+    @GET
+    fun getEmployeeList(): Observable<EmployeeResponse>
 
     companion object{
         val BASE_URL = "http://rjtmobile.com/aamir/pms/android-app/"

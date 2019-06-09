@@ -10,6 +10,6 @@ class SharedPreferencesModule(private val applicationContext: Context) {
 
     @Provides
     internal fun providesSharedPreferences(): SharedPreferences {
-        return applicationContext.getSharedPreferences("userPre", Context.MODE_PRIVATE)
+        return applicationContext.getSharedPreferences("userPref", Context.MODE_PRIVATE)
     }
 }

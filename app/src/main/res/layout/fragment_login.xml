@@ -47,9 +47,9 @@
         </android.support.design.widget.TextInputLayout>
 
 
-        <android.support.design.button.MaterialButton
+        <Button
                 android:id="@+id/login_sign_in_btn"
-                style="@style/AuthnButtonStyle"
+                style="@style/AuthButtonStyle"
                 android:text="SIGN IN"
                 app:layout_constraintTop_toBottomOf="@+id/login_password_til"
                 tools:ignore="MissingConstraints"
@@ -77,9 +77,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/login_forgot_password_r_tv" />
 
-        <android.support.design.button.MaterialButton
+        <Button
                 android:id="@+id/login_create_account_btn"
-                style="@style/AuthnButtonStyle"
+                style="@style/AuthButtonStyle"
                 android:text="@string/create_account"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

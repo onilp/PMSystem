@@ -1,17 +1,23 @@
 package com.example.pmsystem
 
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.example.pmsystem.authentication.login.LoginFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
+import javax.inject.Inject
 //import org.jetbrains.anko.toast
 import com.example.pmsystem.R.id.message as message
 
 class MainActivity : AppCompatActivity(),
     BottomNavClickListener {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var fragmentManager: FragmentManager
 
@@ -19,8 +25,14 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        init()
+
         isUserLoggedIn()
 
+    }
+
+    private fun init() {
+        MyApplication.component.inject(this)
     }
 
     // this function takes in a new fragment and do the fragment transaction
@@ -42,8 +54,7 @@ class MainActivity : AppCompatActivity(),
 
     // check if user is already logged in
     private fun isUserLoggedIn() {
-        //TODO: check shared preferences (Bin)
-        if(true){
+        if(sharedPreferences.getString("userid", "") != ""){
             val homeFragment: Fragment = HomeFragment.newInstance()
             fragmentReplaceHandler(homeFragment)
 
@@ -56,9 +67,10 @@ class MainActivity : AppCompatActivity(),
             val bottomNavFragment: Fragment? = fragmentManager.findFragmentById(R.id.fragment_bottom_nav)
             if(bottomNavFragment != null){
                 fragmentRemoveHandler(bottomNavFragment)
-            }else{
-               // toast("No bottom nav is removed")
             }
+
+            val loginFragment: Fragment = LoginFragment()
+            fragmentReplaceHandler(loginFragment)
         }
     }
 

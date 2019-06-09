@@ -54,9 +54,7 @@ class AssignFragment : Fragment(), AdapterView.OnItemSelectedListener,View.OnCli
 
 
         var taskListViewModel : TaskListViewModel = ViewModelProviders.of(this).get(TaskListViewModel::class.java)
-        var taskList : LiveData<List<TaskListResponse.ProjectTask>> = taskListViewModel.requestTaskList(
-            bundle.getString("projectID")
-        )
+        var taskList : LiveData<List<TaskListResponse.ProjectTask>> = taskListViewModel.requestTaskList()
         taskList.observe(this, Observer { it->
             if (it != null) {
                 for (i in 0 until it.size)
