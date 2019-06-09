@@ -16,6 +16,9 @@ import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.manager.task.TaskListViewModel
 import com.example.pmsystem.model.TaskListResponse
+import com.example.pmsystem.model.project.Project
+import com.example.pmsystem.model.project.ProjectListResponse
+import com.example.pmsystem.project.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_assign.*
 import kotlinx.android.synthetic.main.fragment_assign.view.*
 
