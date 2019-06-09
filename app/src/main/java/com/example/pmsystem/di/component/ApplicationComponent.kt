@@ -1,6 +1,7 @@
 package com.example.pmsystem.di.component
 
 import com.example.pmsystem.MainActivity
+import com.example.pmsystem.authentication.login.LoginPresenter
 import com.example.pmsystem.di.module.RetrofitModule
 import com.example.pmsystem.di.module.SharedPreferencesModule
 import com.example.pmsystem.manager.employeelist.EmployeeListViewModel
@@ -8,6 +9,7 @@ import com.example.pmsystem.manager.task.TaskListViewModel
 import com.example.pmsystem.project.createproject.CreateProjectViewModel
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.project.home.HomeViewModel
+import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -19,4 +21,6 @@ interface ApplicationComponent {
     fun inject(createProjectViewModel: CreateProjectViewModel)
     fun inject(employeeListViewModel: EmployeeListViewModel)
     fun inject(taskListViewModel: TaskListViewModel)
+    fun inject(loginPresenter: LoginPresenter)
+    fun inject(bottomNavFragment: BottomNavFragment)
 }

@@ -10,11 +10,13 @@ import com.example.pmsystem.authentication.registration.RegistrationFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.debug
 import javax.inject.Inject
 //import org.jetbrains.anko.toast
 import com.example.pmsystem.R.id.message as message
 
-class MainActivity : AppCompatActivity(),
+class MainActivity : AppCompatActivity(), AnkoLogger,
     BottomNavClickListener {
 
     @Inject

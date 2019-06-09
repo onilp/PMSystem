@@ -8,13 +8,18 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.pmsystem.MyApplication
 import com.example.pmsystem.model.LoginResponse
 import com.example.pmsystem.network.ApiInterface
 import kotlinx.android.synthetic.main.fragment_login.*
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
 class LoginPresenter(var view: LoginContract.View, var context: Context) : LoginContract.Presenter {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
      var TAG : String = LoginPresenter::class.java.simpleName
 
@@ -26,6 +31,7 @@ class LoginPresenter(var view: LoginContract.View, var context: Context) : Login
         login_password_til: TextInputLayout
     ) {
 
+        MyApplication.component.inject(this)
 
         var email = login_email_til.editText?.text.toString()
         var password = login_password_til.editText?.text.toString()
@@ -40,13 +46,14 @@ class LoginPresenter(var view: LoginContract.View, var context: Context) : Login
             apiInterface.enqueue(object : retrofit2.Callback<LoginResponse>{
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     //Log.e("on response", response.body()!!.userfirstname)
-                    var sharedPreferences : SharedPreferences = context!!.getSharedPreferences("userPref",Context.MODE_PRIVATE)
-                    sharedPreferences.edit().putString("userid",response.body()!!.userid)
-                    sharedPreferences.edit().putString("userfirstname",response.body()!!.userfirstname)
-                    sharedPreferences.edit().putString("userlastname",response.body()!!.userlastname)
-                    sharedPreferences.edit().putString("useremail",response.body()!!.useremail)
-                    sharedPreferences.edit().putString("appapikey",response.body()!!.appapikey)
-                    sharedPreferences.apply { sharedPreferences }
+//                    var sharedPreferences : SharedPreferences = context!!.getSharedPreferences("userPref",Context.MODE_PRIVATE)
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putString("userid",response.body()!!.userid)
+                    editor.putString("userfirstname",response.body()!!.userfirstname)
+                    editor.putString("userlastname",response.body()!!.userlastname)
+                    editor.putString("useremail",response.body()!!.useremail)
+                    editor.putString("appapikey",response.body()!!.appapikey)
+                    editor.apply()
 
                     if(email.equals(response.body()!!.useremail)) {
                         view.loginSuccess("login success")

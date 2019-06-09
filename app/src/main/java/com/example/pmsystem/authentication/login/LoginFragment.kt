@@ -2,6 +2,7 @@ package com.example.pmsystem.authentication.login
 
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.TextInputLayout
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.example.pmsystem.MainActivity
 
 import com.example.pmsystem.R
 import com.example.pmsystem.authentication.registration.RegistrationFragment
@@ -21,6 +23,10 @@ import com.example.pmsystem.network.ApiInterface
 import com.example.pmsystem.project.createproject.CreateProjectFragment
 import com.example.pmsystem.project.home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_login.*
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.AnkoLogger
+import org.jetbrains.anko.startActivity
 import retrofit2.Call
 import retrofit2.Response
 
@@ -70,8 +76,10 @@ class LoginFragment : Fragment(),LoginContract.View {
     }
 
     override fun getTohomePage() {
-        fragmentManager!!.beginTransaction().replace(R.id.fragment_container, HomeFragment())
-            .addToBackStack(null).commit()
+//        fragmentManager!!.beginTransaction().replace(R.id.fragment_container, HomeFragment())
+//            .addToBackStack(null).commit()
+        val mainActivityIntent: Intent = Intent(context, MainActivity::class.java)
+        startActivity(mainActivityIntent)
 
     }
 

@@ -1,17 +1,26 @@
 package com.example.pmsystem.util.bottomnavigationdrawer
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.pmsystem.MainActivity
+import com.example.pmsystem.MyApplication
 import com.example.pmsystem.project.createproject.CreateProjectFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.R
+import com.example.pmsystem.authentication.login.LoginFragment
+import javax.inject.Inject
 
 class BottomNavFragment : Fragment() {
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     lateinit var bottomNavClickListener: BottomNavClickListener
 
@@ -21,6 +30,8 @@ class BottomNavFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_bottom_nav, container, false)
+
+        MyApplication.component.inject(this)
 
         val navView: BottomNavigationView = view!!.findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
@@ -44,16 +55,22 @@ class BottomNavFragment : Fragment() {
                     bottomNavClickListener.onBottonNavClicked(homeFragment)
 
                     // this line is required so that the animation works on selected
-                    return@OnNavigationItemSelectedListener true
+                    return@OnNavigationItemSelectedListener false
                 }
                 R.id.nav_create_project -> {
                     val createProjectFragment =
                         CreateProjectFragment.newInstance()
                     bottomNavClickListener.onBottonNavClicked(createProjectFragment)
-                    return@OnNavigationItemSelectedListener true
+                    return@OnNavigationItemSelectedListener false
                 }
                 R.id.nav_something -> {
-                    return@OnNavigationItemSelectedListener true
+                    return@OnNavigationItemSelectedListener false
+                }
+                R.id.nav_signout -> {
+                    sharedPreferences.edit().clear().apply()
+                    val mainActivityIntent = Intent(context, MainActivity::class.java)
+                    startActivity(mainActivityIntent)
+                    return@OnNavigationItemSelectedListener false
                 }
             }
             false

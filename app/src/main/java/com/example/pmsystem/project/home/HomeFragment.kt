@@ -48,6 +48,8 @@ class HomeFragment : Fragment() {
         projectListLiveData = homeViewModel.fetchProject()
         //subscribe to view model
         projectListLiveData.observe(this, Observer {
+            progressDialog.show()
+
             if(it == null){
                 progressDialog.dismiss()
 
@@ -86,7 +88,6 @@ class HomeFragment : Fragment() {
 
         progressDialog = ProgressDialog(context)
         progressDialog.setMessage("Loading projects...")
-        progressDialog.show()
 
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
