@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.example.pmsystem.authentication.login.LoginFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity(),
     BottomNavClickListener {
 
     lateinit var fragmentManager: FragmentManager
+
+    lateinit var loginFragment : LoginFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +47,13 @@ class MainActivity : AppCompatActivity(),
     private fun isUserLoggedIn() {
         //TODO: check shared preferences (Bin)
         if(true){
-            val homeFragment: Fragment = HomeFragment.newInstance()
-            fragmentReplaceHandler(homeFragment)
+//            val homeFragment: Fragment = HomeFragment.newInstance()
+//            fragmentReplaceHandler(homeFragment)
+//
+//
+
+            loginFragment = LoginFragment.newInstance()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit()
 
             // display bottom nav drawer if user is logged in
             val bottomNavFragment = BottomNavFragment.newInstance()

@@ -32,8 +32,27 @@ interface ApiInterface {
                    @Query("start_date") start_date : String,
                    @Query("end_date") end_date : String) : Call<SubTaskResponse>
 
-    @GET("pms_projects.php?")
-    fun getProjectList(): Observable<ProjectListResponse>
+    @GET("pms_project_sub_task_list.php?")
+    fun getSubTaskList() : Call<SubTaskListResponse>
+
+
+
+    @GET("pms_view_task.php?")
+    fun viewTaskList(@Query ("user_id") user_id : String)
+        : Call<ShowTaskListResponse>
+
+
+    @GET("pms_view_task_deatil.php?")
+    fun ViewTaskDetails(@Query ("taskid") taskid : String,
+                        @Query ("project_id") project_id : String)
+    : Call<ShowTaskDetailResponse>
+
+
+
+
+
+
+
 
     @GET("pms_create_project.php?")
     fun createProject(
@@ -45,8 +64,13 @@ interface ApiInterface {
     ): Observable<CreateProjectResponse>
 
 
-    @GET("pms_project_sub_task_list.php?")
-    fun getSubTaskList() : Call<SubTaskListResponse>
+
+    @GET("pms_projects.php?")
+    fun getProjectList(): Observable<ProjectListResponse>
+
+
+
+
 
 
     @FormUrlEncoded

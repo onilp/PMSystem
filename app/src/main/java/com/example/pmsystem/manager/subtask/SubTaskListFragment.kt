@@ -79,4 +79,13 @@ class SubTaskListFragment : Fragment(), SubTaskListContract.View {
         myAdapter.notifyDataSetChanged()
 
     }
+
+    companion object{
+        fun newInstance(): SubTaskListFragment {
+            return SubTaskListFragment()
+        }
+    }
+
+
+
 }

@@ -40,7 +40,6 @@ class SubTaskListAdapter(val context : Context, val datalist : List<SubTaskListR
             itemView.startdate.text = data.startdate.toString()
             itemView.endstart.text = data.endstart.toString()
 
-
         }
     }
 
