@@ -68,7 +68,12 @@ class RegistrationPresenter(var view: RegistrationContract.View, var context: Co
             apiInterface.enqueue(object : retrofit2.Callback<RegistrationResponse>{
                 override fun onResponse(call: Call<RegistrationResponse>, response: Response<RegistrationResponse>) {
                     Log.e("on response", response.body()!!.toString())
+
+                    Toast.makeText(context, "Successfully registered", Toast.LENGTH_LONG).show()
+                    view.navigateToLogin("")
+
                 }
+
 
                 override fun onFailure(call: Call<RegistrationResponse>, t: Throwable) {
                     Log.e("on error", t.message)

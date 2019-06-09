@@ -34,6 +34,7 @@ class ShowTaskListAdapter(var context: Context, var showtasklists: List<ShowTask
         holder.bindValue(showtasklists.get(position))
         holder.itemView.setOnClickListener {
 
+
         }
 
 

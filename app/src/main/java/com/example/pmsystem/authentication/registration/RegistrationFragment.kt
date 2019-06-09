@@ -52,8 +52,8 @@ class RegistrationFragment : Fragment(), RegistrationContract.View {
         registrationPresenter = RegistrationPresenter(this,requireContext())
 
 
-        var textviewNoAccount: TextView = view.findViewById(R.id.register_login_here_tv)
-        textviewNoAccount.setOnClickListener {
+        var textviewhaveAccount: TextView = view.findViewById(R.id.register_login_here_tv)
+        textviewhaveAccount.setOnClickListener {
             registrationPresenter.onLoginHereClick()
 
         }
@@ -68,7 +68,7 @@ class RegistrationFragment : Fragment(), RegistrationContract.View {
                 register_password_til,register_companysize_til,register_role_til)
 
 
-            fragmentManager!!.beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit()
+
 
 
 

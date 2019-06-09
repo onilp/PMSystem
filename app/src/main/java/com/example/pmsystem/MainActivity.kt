@@ -82,4 +82,5 @@ class MainActivity : AppCompatActivity(),
     override fun onBottonNavClicked(fragment: Fragment) {
         fragmentReplaceHandler(fragment)
     }
+
 }

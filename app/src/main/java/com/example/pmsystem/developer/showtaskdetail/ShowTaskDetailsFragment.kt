@@ -32,13 +32,8 @@ class ShowTaskDetailsFragment : Fragment(), ShowTaskDetailsContract.View {
 
         var view  =  inflater.inflate(R.layout.fragment_show_task_details, container, false)
 
-
         return view
-
     }
-
-
-
 
 
     override fun showTaskDetailsFail(message: String?) {

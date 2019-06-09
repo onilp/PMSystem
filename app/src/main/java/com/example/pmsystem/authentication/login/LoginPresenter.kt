@@ -39,7 +39,7 @@ class LoginPresenter(var view: LoginContract.View, var context: Context) : Login
             var apiInterface  = ApiInterface.getRetrofitInstance().login(email,password)
             apiInterface.enqueue(object : retrofit2.Callback<LoginResponse>{
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                    Log.e("on response", response.body()!!.userfirstname)
+                    //Log.e("on response", response.body()!!.userfirstname)
                     var sharedPreferences : SharedPreferences = context!!.getSharedPreferences("userPref",Context.MODE_PRIVATE)
                     sharedPreferences.edit().putString("userid",response.body()!!.userid)
                     sharedPreferences.edit().putString("userfirstname",response.body()!!.userfirstname)
@@ -47,8 +47,13 @@ class LoginPresenter(var view: LoginContract.View, var context: Context) : Login
                     sharedPreferences.edit().putString("useremail",response.body()!!.useremail)
                     sharedPreferences.edit().putString("appapikey",response.body()!!.appapikey)
                     sharedPreferences.apply { sharedPreferences }
-                    view.loginSuccess("login success")
-                    view.getTohomePage()
+
+                    if(email.equals(response.body()!!.useremail)) {
+                        view.loginSuccess("login success")
+                        view.getTohomePage()
+                    }else{
+                        Toast.makeText(context, "invalid login", Toast.LENGTH_SHORT).show()
+                    }
 
                 }
 
