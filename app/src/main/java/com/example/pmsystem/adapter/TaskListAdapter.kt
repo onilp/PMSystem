@@ -12,12 +12,13 @@ import android.widget.AdapterView
 import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.model.TaskListResponse
+import com.example.pmsystem.model.project.Project
 import kotlinx.android.synthetic.main.item_task_list.view.*
 
 class TaskListAdapter(var context: Context, var taskList: List<TaskListResponse.ProjectTask>) :
     RecyclerView.Adapter<TaskListAdapter.MyViewHolder>() {
 
-
+    lateinit var onItemClick: ((TaskListResponse.ProjectTask) -> Unit)
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TaskListAdapter.MyViewHolder {
         var view = LayoutInflater.from(p0.context).inflate(R.layout.item_task_list, p0, false)
         return MyViewHolder(view)
@@ -31,11 +32,12 @@ class TaskListAdapter(var context: Context, var taskList: List<TaskListResponse.
 
         p0.bindValues(taskList.get(p1))
         p0.itemView.setOnClickListener {
-            var pref : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
+           /* var pref : SharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context)
             var editor : SharedPreferences.Editor = pref.edit()
             editor.putString("project_id",taskList.get(p1).projectid).apply()
             editor.putString("task_id", taskList.get(p1).taskid).apply()
-            Toast.makeText(context, taskList.get(p1).projectid, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, taskList.get(p1).projectid, Toast.LENGTH_LONG).show()*/
+            onItemClick.invoke(taskList.get(p1))
             //TODO navigate to the List sub task fragment (BIN)
         }
     }
