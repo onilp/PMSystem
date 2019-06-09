@@ -22,7 +22,7 @@ import com.example.pmsystem.project.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_assign.*
 import kotlinx.android.synthetic.main.fragment_assign.view.*
 
-class AssignFragment : Fragment(), AdapterView.OnItemSelectedListener, View.OnClickListener {
+class AssignFragment : Fragment(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         val assignViewModel = ViewModelProviders.of(this).get(AssignViewModel::class.java)
@@ -187,13 +187,6 @@ class AssignFragment : Fragment(), AdapterView.OnItemSelectedListener, View.OnCl
         btn_assign.setOnClickListener(this)
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        Toast.makeText(this.context, "Please select a Project", Toast.LENGTH_LONG).show()
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
 
 }
