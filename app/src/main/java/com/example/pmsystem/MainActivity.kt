@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity(),
 
     lateinit var fragmentManager: FragmentManager
 
+    lateinit var loginFragment : LoginFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,8 +58,13 @@ class MainActivity : AppCompatActivity(),
     private fun isUserLoggedIn() {
 //        if(sharedPreferences.getString("userid", "") != ""){
         if(true){
-            val homeFragment: Fragment = HomeFragment.newInstance()
-            fragmentReplaceHandler(homeFragment)
+//            val homeFragment: Fragment = HomeFragment.newInstance()
+//            fragmentReplaceHandler(homeFragment)
+//
+//
+
+            loginFragment = LoginFragment.newInstance()
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container,loginFragment).addToBackStack(null).commit()
 
             // display bottom nav drawer if user is logged in
             val bottomNavFragment = BottomNavFragment.newInstance()
