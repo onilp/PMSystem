@@ -83,6 +83,10 @@ interface ApiInterface {
     @GET
     fun getEmployeeList(): Observable<EmployeeResponse>
 
+    @GET
+    fun getSubTaskListDeveloper(@Query("user_id") user_id: String, @Query("taskid") taskid: String): Observable<SubTaskListResponse>
+
+
     companion object{
         val BASE_URL = "http://rjtmobile.com/aamir/pms/android-app/"
         fun getRetrofitInstance() : ApiInterface{

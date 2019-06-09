@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity(),
 
     // check if user is already logged in
     private fun isUserLoggedIn() {
-        if(sharedPreferences.getString("userid", "") != ""){
+//        if(sharedPreferences.getString("userid", "") != ""){
+        if(true){
             val homeFragment: Fragment = HomeFragment.newInstance()
             fragmentReplaceHandler(homeFragment)
 

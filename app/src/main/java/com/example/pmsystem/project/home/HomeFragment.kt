@@ -1,5 +1,6 @@
 package com.example.pmsystem.project.home
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -7,17 +8,18 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDialog
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import com.example.pmsystem.R
 import com.example.pmsystem.adapter.ProjectRecyclerViewAdapter
-import com.example.pmsystem.manager.assign.AssignFragment
+import com.example.pmsystem.manager.task.TaskListFragment
 import com.example.pmsystem.model.project.ProjectListResponse
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -31,6 +33,8 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     lateinit var projectListLiveData: MutableLiveData<ProjectListResponse>
     lateinit var projectRecyclerView: RecyclerView
+    lateinit var recyclerViewDecoration: DividerItemDecoration
+    lateinit var progressDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,15 +49,27 @@ class HomeFragment : Fragment() {
         //subscribe to view model
         projectListLiveData.observe(this, Observer {
             if(it == null){
+                progressDialog.dismiss()
+
                 no_project_tv.visibility = View.VISIBLE
                 projectRecyclerView.visibility = View.GONE
             }else {
+                progressDialog.dismiss()
+
                 no_project_tv.visibility = View.GONE
                 projectRecyclerView.visibility = View.VISIBLE
                 projectAdapter = ProjectRecyclerViewAdapter(
                     context!!, it.projects.toList()
                 )
                 projectRecyclerView.adapter = projectAdapter
+
+                projectAdapter.onItemClick = { it ->
+                    val taskListFragment = TaskListFragment()
+                    val bundle = Bundle()
+                    bundle.putString("projectID", it.id)
+                    taskListFragment.arguments = bundle
+                    activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, taskListFragment).addToBackStack(null).commit()
+                }
             }
         })
         return rootView
@@ -65,6 +81,12 @@ class HomeFragment : Fragment() {
 
         projectRecyclerView = rootView.findViewById(R.id.project_recyclerview) as RecyclerView
         projectRecyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerViewDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        projectRecyclerView.addItemDecoration(recyclerViewDecoration)
+
+        progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Loading projects...")
+        progressDialog.show()
 
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
