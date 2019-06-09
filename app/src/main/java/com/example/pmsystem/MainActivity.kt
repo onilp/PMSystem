@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.example.pmsystem.authentication.login.LoginFragment
+import com.example.pmsystem.authentication.registration.RegistrationFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity(),
     lateinit var fragmentManager: FragmentManager
 
     lateinit var loginFragment : LoginFragment
+
+    lateinit var registrationFragment: RegistrationFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

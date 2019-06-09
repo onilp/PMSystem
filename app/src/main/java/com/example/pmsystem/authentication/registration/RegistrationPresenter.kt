@@ -40,13 +40,13 @@ class RegistrationPresenter(var view: RegistrationContract.View, var context: Co
     ) {
 
 
-        var firstname : String = registerFirstName.editText.toString()
-        var lastname : String= registerLastName.editText.toString()
-        var email: String = registeremail.editText.toString()
-        var mobile : String= registermobile.editText.toString()
-        var password: String = registerpassword.editText.toString()
-        var companysize : String= registercompanysize.editText.toString()
-        var yourrole: String = registeryourrole.editText.toString()
+        var firstname : String = registerFirstName.editText?.text.toString()
+        var lastname : String= registerLastName.editText?.text.toString()
+        var email: String = registeremail.editText?.text.toString()
+        var mobile : String= registermobile.editText?.text.toString()
+        var password: String = registerpassword.editText?.text.toString()
+        var companysize : String= registercompanysize.editText?.text.toString()
+        var yourrole: String = registeryourrole.editText?.text.toString()
 
         if (TextUtils.isEmpty(firstname)) run {
             view.displayInputError(registerFirstName,"input the firstname ")

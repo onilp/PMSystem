@@ -62,6 +62,7 @@ class RegistrationFragment : Fragment(), RegistrationContract.View {
         var buttonSignUp : Button = view.findViewById(R.id.register_sign_up_btn)
         buttonSignUp.setOnClickListener{
 
+
             registrationPresenter.validateRegisterInputs(register_first_name_til,
                 register_last_name_til,register_email_til,register_mobile_til,
                 register_password_til,register_companysize_til,register_role_til)
@@ -134,6 +135,12 @@ class RegistrationFragment : Fragment(), RegistrationContract.View {
             .commit()
 
 
+    }
+
+    companion object {
+        fun newInstance(): RegistrationFragment {
+            return RegistrationFragment()
+        }
     }
 
 

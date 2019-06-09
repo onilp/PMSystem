@@ -70,7 +70,7 @@ class LoginFragment : Fragment(),LoginContract.View {
     }
 
     override fun getTohomePage() {
-        fragmentManager!!.beginTransaction().replace(R.id.fragment_container, CreateProjectFragment())
+        fragmentManager!!.beginTransaction().replace(R.id.fragment_container, HomeFragment())
             .addToBackStack(null).commit()
 
     }

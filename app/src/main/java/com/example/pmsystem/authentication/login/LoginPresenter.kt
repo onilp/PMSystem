@@ -27,10 +27,10 @@ class LoginPresenter(var view: LoginContract.View, var context: Context) : Login
     ) {
 
 
-        var email = login_email_til.editText.toString()
-        var password = login_password_til.editText.toString()
+        var email = login_email_til.editText?.text.toString()
+        var password = login_password_til.editText?.text.toString()
         if (TextUtils.isEmpty(email)) run {
-            view.showInputError(login_password_til,"input the ")
+            view.showInputError(login_password_til,"input the email")
         } else if (TextUtils.isEmpty(password)){
             Toast.makeText(context, "please input your password!", Toast.LENGTH_SHORT).show()
 
