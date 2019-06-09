@@ -31,13 +31,10 @@ class TaskListFragment : Fragment(),  AnkoLogger {
         var view = inflater.inflate(R.layout.fragment_task_list, container, false)
 //        taskListPresenter = TaskListPresenter(this)
 //            taskListPresenter.buttonClicked()
-        var bundle = arguments
             var taskListViewModel = ViewModelProviders.of(this).get(TaskListViewModel::class.java)
             var taskList : LiveData<List<TaskListResponse.ProjectTask>> = taskListViewModel.requestTaskList()
 
         (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.task_list)
-         /*   var taskListViewModel = ViewModelProviders.of(this).get(TaskListViewModel::class.java)
-            var taskList : LiveData<List<TaskListResponse.ProjectTask>> = taskListViewModel.requestTaskList(bundle!!.getString("projectID"))
             taskList.observe(this, Observer {it->
                 if (it != null) {
                     for(i in 0 until it.size) {
@@ -48,7 +45,7 @@ class TaskListFragment : Fragment(),  AnkoLogger {
                     myAdapter.notifyDataSetChanged()
 
                 }
-            })*/
+            })
         view.btn_create_task.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(R.id.fragment_container,CreateTaskFragment())?.commit()
