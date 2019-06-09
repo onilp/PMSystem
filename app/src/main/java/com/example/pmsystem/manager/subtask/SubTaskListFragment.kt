@@ -1,8 +1,12 @@
 package com.example.pmsystem.manager.subtask
 
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,8 +15,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.adapter.SubTaskListAdapter
+import com.example.pmsystem.adapter.TaskListAdapter
+import com.example.pmsystem.manager.task.CreateTaskFragment
+import com.example.pmsystem.manager.task.TaskListViewModel
 import com.example.pmsystem.model.SubTaskListResponse
+import com.example.pmsystem.model.TaskListResponse
 import kotlinx.android.synthetic.main.fragment_sub_task_list.view.*
+import kotlinx.android.synthetic.main.fragment_task_list.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,12 +33,13 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class SubTaskListFragment : Fragment(), SubTaskListContract.View {
+class SubTaskListFragment : Fragment()//, SubTaskListContract.View
+ {
 
 
 
 
-    lateinit var recyclerView: RecyclerView
+    /*lateinit var recyclerView: RecyclerView
     lateinit var myAdapter: SubTaskListAdapter
     lateinit var subtaskListPresenter: SubTaskPresenter
 
@@ -82,6 +92,37 @@ class SubTaskListFragment : Fragment(), SubTaskListContract.View {
         }
     }
 
+*/
+    lateinit var recyclerView: RecyclerView
+     lateinit var myAdapter: SubTaskListAdapter
+     private var subTasks : ArrayList<SubTaskListResponse.ProjectSubTask> = ArrayList()
 
+     override fun onCreateView(
+         inflater: LayoutInflater,
+         container: ViewGroup?,
+         savedInstanceState: Bundle?
+     ): View? {
+         var view = inflater.inflate(R.layout.fragment_sub_task_list, container, false)
+         var subTaskListViewModel = ViewModelProviders.of(this).get(SubTaskListViewModel::class.java)
+         var subTaskList : LiveData<List<SubTaskListResponse.ProjectSubTask>> = subTaskListViewModel.requestSubTaskList()
 
+         (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.sub_task_list)
+         subTaskList.observe(this, Observer {it->
+             if (it != null) {
+                 for(i in 0 until it.size) {
+                     subTasks.add(it.get(i))
+                 }
+                 myAdapter = SubTaskListAdapter(context!!.applicationContext, subTasks)
+                 recyclerView.adapter = myAdapter
+                 myAdapter.notifyDataSetChanged()
+             }
+         })
+
+         return view
+     }
+     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+         super.onViewCreated(view, savedInstanceState)
+         recyclerView = view.findViewById(R.id.recyclerView)
+         recyclerView.layoutManager = LinearLayoutManager(this.context)
+     }
 }

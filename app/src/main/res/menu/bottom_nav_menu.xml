@@ -13,10 +13,9 @@
         android:title="@string/create_project" />
 
     <item
-        android:id="@+id/nav_something"
+        android:id="@+id/nav_assign"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
-
+        android:title="@string/assign_pts" />
     <item
         android:id="@+id/nav_signout"
         android:icon="@drawable/ic_exit_to_app_black_24dp"

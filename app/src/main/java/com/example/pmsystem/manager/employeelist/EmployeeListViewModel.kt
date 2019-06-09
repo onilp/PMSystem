@@ -3,6 +3,7 @@ package com.example.pmsystem.manager.employeelist
 import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import com.example.pmsystem.MyApplication
 import com.example.pmsystem.model.employee.Employee
 import com.example.pmsystem.model.employee.EmployeeResponse
@@ -32,6 +33,7 @@ class EmployeeListViewModel: ViewModel(), AnkoLogger {
             .subscribe({
                 debug(it.toString())
                 employeeList.value = it.employees
+                Log.e("EmployeeListVM--", it.employees.toString())
             }, {
                 error(it.message)
                 employeeList.value = null

@@ -44,7 +44,8 @@ interface ApiInterface {
                    @Query("end_date") end_date : String) : Call<SubTaskResponse>
 
     @GET("pms_project_sub_task_list.php?")
-    fun getSubTaskList() : Call<SubTaskListResponse>
+    fun getSubTaskList() : Observable<SubTaskListResponse>
+    //fun getSubTaskList() : Call<SubTaskListResponse>
 
 
 
@@ -96,11 +97,18 @@ interface ApiInterface {
         @Field("password") password: String
     ) : Call<LoginResponse>
 
-    @GET
+    @GET("pms_employee_list.php")
     fun getEmployeeList(): Observable<EmployeeResponse>
 
     @GET
     fun getSubTaskListDeveloper(@Query("user_id") user_id: String, @Query("taskid") taskid: String): Observable<SubTaskListResponse>
+
+    @GET("pms_edit_sub_task_status.php")
+    fun updateSubtask(@Query("taskid") taskid : String,
+                      @Query("subtaskid") subtaskid : String,
+                      @Query("project_id") project_id : String,
+                      @Query("userid") userid : String,
+                      @Query("subtask_status") subtask_status : String) : Call<UpdateSubtask>
 
 
     companion object{

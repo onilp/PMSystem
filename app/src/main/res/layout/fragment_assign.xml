@@ -24,12 +24,19 @@
         android:id="@+id/spinner_subtask_list"
         app:layout_constraintTop_toBottomOf="@+id/spinner_task_list"
         />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_employee_list"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_subtask_list"
+        />
+
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Assign"
-        app:layout_constraintTop_toBottomOf="@id/spinner_subtask_list"
+        app:layout_constraintTop_toBottomOf="@id/spinner_employee_list"
         style="@style/AppButton"
         android:textAllCaps="false"
         android:id="@+id/btn_assign"/>

@@ -15,7 +15,7 @@ class SubTaskPresenter(var view : SubTaskListContract.View) :  SubTaskListContra
 
 
     override fun viewIsCreated() {
-        val apiInterface = ApiInterface.getRetrofitInstance().getSubTaskList()
+        /*val apiInterface = ApiInterface.getRetrofitInstance().getSubTaskList()
         apiInterface.enqueue(object : Callback<SubTaskListResponse>{
             override fun onResponse(call: Call<SubTaskListResponse>, response: Response<SubTaskListResponse>) {
                 Log.e("sub task response", response.body()!!.project_sub_task.toString())
@@ -32,7 +32,7 @@ class SubTaskPresenter(var view : SubTaskListContract.View) :  SubTaskListContra
 
 
 
-        )
+        )*/
 
     }
 }

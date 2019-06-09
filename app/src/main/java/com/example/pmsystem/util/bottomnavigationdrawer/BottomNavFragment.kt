@@ -16,6 +16,7 @@ import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.R
 import com.example.pmsystem.authentication.login.LoginFragment
 import javax.inject.Inject
+import com.example.pmsystem.manager.assign.AssignFragment
 
 class BottomNavFragment : Fragment() {
 
@@ -63,8 +64,10 @@ class BottomNavFragment : Fragment() {
                     bottomNavClickListener.onBottonNavClicked(createProjectFragment)
                     return@OnNavigationItemSelectedListener false
                 }
-                R.id.nav_something -> {
-                    return@OnNavigationItemSelectedListener false
+                R.id.nav_assign -> {
+                    val assignFragment = AssignFragment()
+                    bottomNavClickListener.onBottonNavClicked(assignFragment)
+                    return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_signout -> {
                     sharedPreferences.edit().clear().apply()
@@ -72,6 +75,7 @@ class BottomNavFragment : Fragment() {
                     startActivity(mainActivityIntent)
                     return@OnNavigationItemSelectedListener false
                 }
+
             }
             false
         }

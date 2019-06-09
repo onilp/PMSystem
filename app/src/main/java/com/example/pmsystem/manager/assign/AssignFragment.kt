@@ -13,11 +13,15 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.pmsystem.R
+import com.example.pmsystem.manager.employeelist.EmployeeListViewModel
+import com.example.pmsystem.manager.subtask.SubTaskListViewModel
 import com.example.pmsystem.manager.task.TaskListViewModel
 import com.example.pmsystem.model.SubTaskListResponse
 import com.example.pmsystem.model.TaskListResponse
+import com.example.pmsystem.model.employee.Employee
 import com.example.pmsystem.model.project.Project
 import com.example.pmsystem.model.project.ProjectListResponse
+import com.example.pmsystem.model.subtasklistdeveloper.SubTaskListDeveloperResponse
 import com.example.pmsystem.project.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_assign.*
 import kotlinx.android.synthetic.main.fragment_assign.view.*
@@ -59,17 +63,21 @@ class AssignFragment : Fragment(), View.OnClickListener {
     var projectList: ArrayList<String> = ArrayList()
     var tasksList: ArrayList<String> = ArrayList()
     var subTasksList: ArrayList<String> = ArrayList()
+    var employeesList : ArrayList<String> = ArrayList()
     var projects: List<Project> = ArrayList()
     var tasks: ArrayList<TaskListResponse.ProjectTask> = ArrayList()
     var subTasks: ArrayList<SubTaskListResponse.ProjectSubTask> = ArrayList()
+    var employees : ArrayList<Employee> = ArrayList()
     lateinit var projectListSpinner: Spinner
     lateinit var taskListSpinner: Spinner
     lateinit var subTaskListSpinner: Spinner
+    lateinit var employeeSpinner : Spinner
     var projectIdSelected: String = ""
     var taskIdSelected: String = ""
     var subTaskIdSelected: String = ""
     var tasksIdList: ArrayList<String> = ArrayList()
     var subTasksIdList: ArrayList<String> = ArrayList()
+    var employeeIdList : ArrayList<String> = ArrayList()
 
     var homeViewModel: HomeViewModel = HomeViewModel()
     lateinit var projectListLiveData: MutableLiveData<ProjectListResponse>
@@ -82,6 +90,7 @@ class AssignFragment : Fragment(), View.OnClickListener {
         projectListSpinner = view.findViewById(R.id.spinner_project_list)
         taskListSpinner = view.findViewById(R.id.spinner_task_list)
         subTaskListSpinner = view.findViewById(R.id.spinner_subtask_list)
+        employeeSpinner = view.findViewById(R.id.spinner_employee_list)
 
         projectListLiveData = homeViewModel.fetchProject()
         projectListLiveData.observe(this, Observer { it ->
@@ -123,6 +132,10 @@ class AssignFragment : Fragment(), View.OnClickListener {
 
                                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                                     subTaskIdSelected = subTasksIdList.get(position)
+                                    loadEmployeeSpinner()
+
+
+
                                 }
                             }
                     }
@@ -134,52 +147,76 @@ class AssignFragment : Fragment(), View.OnClickListener {
 
 
     private fun subTaskSpinner(projectId: String, taskId: String) {
-        /* var subTaskListViewModel : SubTaskListViewModel = ViewModelProviders.of(this).get(SubTaskListViewModel::class.java)
-         var subTaskList : LiveData<List<SubTaskListDeveloperResponse.ProjectSubTask>> = subTaskListViewModel.fetchSubTaskList()
+         var subTaskListViewModel : SubTaskListViewModel = ViewModelProviders.of(this).get(
+             SubTaskListViewModel::class.java)
+         var subTaskList : LiveData<List<SubTaskListResponse.ProjectSubTask>> = subTaskListViewModel.requestSubTaskList()
          subTaskList.observe(this, Observer { it->
              subTasks.clear()
              subTasksList.clear()
              subTasksIdList.clear()
-             var items : List<SubTaskListDeveloperResponse.ProjectSubTask> = it.subtaskList
-             for (i in 0 until items.size){
-                 if(items.get(i).taskid.equals(taskId)){
-                     subTasks.add(items.get(i))
-                     var item : String = items.get(i).subtaskid + ", " + items.get(i).subtaskname
+             for (i in 0 until it!!.size){
+                 if (it.get(i).taskid.equals(taskId)) {
+                     subTasks.add(it.get(i))
+                     var item: String = it.get(i).subtaskid + ", " + it.get(i).subtaskname
                      subTasksList.add(item)
-                     var id: String = items.get(i).subtaskid
+                     var id = it.get(i).subtaskid
                      subTasksIdList.add(id)
                  }
              }
              val subTaskArrayAdapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,subTasksList)
              subTaskListSpinner.adapter = subTaskArrayAdapter
-         })*/
+         })
     }
 
     private fun taskSpinner(id: String) {
-//        var taskListViewModel: TaskListViewModel =
-//            ViewModelProviders.of(this).get(TaskListViewModel::class.java)
-//        var taskList: LiveData<List<TaskListResponse.ProjectTask>> =
-//            taskListViewModel.requestTaskList(id)
-//        taskList.observe(this, Observer { it ->
-//            tasks.clear()
-//            tasksList.clear()
-//            tasksIdList.clear()
-//
-//            for (i in 0 until it!!.size) {
-//                if (it.get(i).projectid == id) {
-//                    tasks.add(it.get(i))
-//
-//                    var item: String = it.get(i).taskid + ", " + it.get(i).taskname
-//                    tasksList.add(item)
-//
-//                    var id = it.get(i).taskid
-//                    tasksIdList.add(id)
-//                }
-//            }
-//            val taskArrayAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, tasksList)
-//            taskListSpinner.adapter = taskArrayAdapter
-//        })
+        var taskListViewModel: TaskListViewModel =
+            ViewModelProviders.of(this).get(TaskListViewModel::class.java)
+        var taskList: LiveData<List<TaskListResponse.ProjectTask>> =
+            taskListViewModel.requestTaskList()
+        taskList.observe(this, Observer { it ->
+            tasks.clear()
+            tasksList.clear()
+            tasksIdList.clear()
 
+           for (i in 0 until it!!.size) {
+                if (it.get(i).projectid == id) {
+                    tasks.add(it.get(i))
+
+                    var item: String = it.get(i).taskid + ", " + it.get(i).taskname
+                    tasksList.add(item)
+
+                    var id = it.get(i).taskid
+                    tasksIdList.add(id)
+                }
+            }
+            val taskArrayAdapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, tasksList)
+            taskListSpinner.adapter = taskArrayAdapter
+        })
+
+    }
+
+    private fun loadEmployeeSpinner(){
+        Log.e("Load employee spinner","Assign")
+        var employeeListViewModel = ViewModelProviders.of(this).get(EmployeeListViewModel::class.java)
+        var employeeList : LiveData<List<Employee>> = employeeListViewModel.fetchEmployee()
+        employeeList.observe(this, Observer{it->
+            employees.clear()
+            employeesList.clear()
+
+            for (i in 0 until it!!.size){
+                employees.add(it.get(i))
+                var emp : String = it.get(i).empid + "- " + it.get(i).empfirstname + ", " + it.get(i).emplastname
+                employeesList.add(emp)
+
+                var id = it.get(i).empid
+                employeeIdList.add(id)
+
+            }
+
+            val employeeArrayAdapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,employeesList)
+            employeeSpinner.adapter = employeeArrayAdapter
+
+        })
     }
 
 
