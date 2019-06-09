@@ -74,26 +74,18 @@ interface ApiInterface {
         @Query("end_date") end_date: String
     ): Observable<CreateProjectResponse>
 
-
-
     @GET("pms_projects.php?")
     fun getProjectList(): Observable<ProjectListResponse>
 
-
-
-
-
-
-    @FormUrlEncoded
     @POST("pms_reg.php?")
     fun registerUser(
-        @Field("first_name") firstname: String,
-        @Field("last_name") lastname: String,
-        @Field("email") email: String,
-        @Field("mobile") mobile: String,
-        @Field("password") password: String,
-        @Field("company_size") companysize: String,
-        @Field("your_role") yourrole: String
+        @Query("first_name") firstname: String,
+        @Query("last_name") lastname: String,
+        @Query("email") email: String,
+        @Query("mobile") mobile: String,
+        @Query("password") password: String,
+        @Query("company_size") companysize: String,
+        @Query("your_role") yourrole: String
     ) : Call<RegistrationResponse>
 
 
