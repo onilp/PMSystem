@@ -3,6 +3,7 @@ package com.example.pmsystem.developer.showtaskdetail
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,15 +31,12 @@ class ShowTaskDetailsFragment : Fragment(), ShowTaskDetailsContract.View {
     ): View? {
         // Inflate the layout for this fragment
 
-
+        (activity as? AppCompatActivity)?.supportActionBar?.title = "Task Details"
 
         var bundle:Bundle? = arguments
 
         var taskid:String? =  bundle?.getString("taskid","")
         var projectid:String? = bundle?.getString("projectid","")
-
-
-
 
 
         showTaskDetailsPresenter = ShowTaskDetailsPresenter(this)

@@ -23,7 +23,7 @@ class ShowtaskListPresenter(var view: ShowTaskListContract.View) : ShowTaskListC
 
         var userid = sharedPreferences.getString("userid","")
 
-        val apiInterface = ApiInterface.getRetrofitInstance().viewTaskList(userid)
+        val apiInterface = ApiInterface.getRetrofitInstance().viewTaskList("70")
         apiInterface.enqueue(object : Callback<ShowTaskListResponse>{
             override fun onResponse(call: Call<ShowTaskListResponse>, response: Response<ShowTaskListResponse>) {
                 Log.e("show task list response", response.body()!!.view_tasks.toString())

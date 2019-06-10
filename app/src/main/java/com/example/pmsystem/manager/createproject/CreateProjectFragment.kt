@@ -14,7 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.example.pmsystem.R
-import com.example.pmsystem.project.home.HomeFragment
+import com.example.pmsystem.manager.home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_create_project.*
 import org.jetbrains.anko.toast
 

@@ -19,7 +19,7 @@ import com.example.pmsystem.model.TaskListResponse
 import com.example.pmsystem.model.employee.Employee
 import com.example.pmsystem.model.project.Project
 import com.example.pmsystem.model.project.ProjectListResponse
-import com.example.pmsystem.project.home.HomeViewModel
+import com.example.pmsystem.manager.home.HomeViewModel
 
 class AssignFragment : Fragment() {
 
@@ -44,7 +44,8 @@ class AssignFragment : Fragment() {
     var subTasksIdList: ArrayList<String> = ArrayList()
     var employeeIdList : ArrayList<String> = ArrayList()
 
-    var homeViewModel: HomeViewModel = HomeViewModel()
+    var homeViewModel: HomeViewModel =
+        HomeViewModel()
     lateinit var projectListLiveData: MutableLiveData<ProjectListResponse>
 
 

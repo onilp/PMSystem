@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import com.example.pmsystem.MainActivity
 import com.example.pmsystem.MyApplication
 import com.example.pmsystem.manager.createproject.CreateProjectFragment
-import com.example.pmsystem.project.home.HomeFragment
+import com.example.pmsystem.manager.home.HomeFragment
 import com.example.pmsystem.R
 import com.example.pmsystem.authentication.login.LoginFragment
 import javax.inject.Inject

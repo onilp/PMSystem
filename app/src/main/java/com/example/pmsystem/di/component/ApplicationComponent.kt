@@ -13,7 +13,7 @@ import com.example.pmsystem.di.module.SharedPreferencesModule
 import com.example.pmsystem.manager.employeelist.EmployeeListViewModel
 import com.example.pmsystem.manager.task.TaskListViewModel
 import com.example.pmsystem.manager.createproject.CreateProjectViewModel
-import com.example.pmsystem.project.home.HomeViewModel
+import com.example.pmsystem.manager.home.HomeViewModel
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragmentDeveloper
 import dagger.Component

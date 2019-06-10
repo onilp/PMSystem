@@ -12,9 +12,10 @@ import android.view.ViewGroup
 import com.example.pmsystem.MainActivity
 import com.example.pmsystem.MyApplication
 import com.example.pmsystem.manager.createproject.CreateProjectFragment
-import com.example.pmsystem.project.home.HomeFragment
+import com.example.pmsystem.manager.home.HomeFragment
 import com.example.pmsystem.R
 import com.example.pmsystem.authentication.login.LoginFragment
+import com.example.pmsystem.developer.showtasklist.ShowTaskListFragment
 import javax.inject.Inject
 import com.example.pmsystem.manager.assign.AssignFragment
 
@@ -51,9 +52,9 @@ class BottomNavFragmentDeveloper : Fragment() {
             when (item.itemId) {
                 R.id.nav_home -> {
                     // instantiate a fragment
-                    val homeFragment = HomeFragment.newInstance()
+                    val showTaskListFragment: Fragment = ShowTaskListFragment()
                     // send the fragment as argument to MainActivity and replace the fragment container with this fragment
-                    bottomNavClickListener.onBottonNavClicked(homeFragment)
+                    bottomNavClickListener.onBottonNavClicked(showTaskListFragment)
 
                     // this line is required so that the animation works on selected
                     return@OnNavigationItemSelectedListener false

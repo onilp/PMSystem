@@ -11,7 +11,7 @@ import com.example.pmsystem.developer.subtaskdeveloper.subtasklist.SubTaskDevelo
 import com.example.pmsystem.developer.showtaskdetail.ShowTaskDetailsFragment
 import com.example.pmsystem.developer.showtasklist.ShowTaskListFragment
 import com.example.pmsystem.manager.assign.AssignFragment
-import com.example.pmsystem.project.home.HomeFragment
+import com.example.pmsystem.manager.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragmentDeveloper
@@ -67,14 +67,16 @@ class MainActivity : AppCompatActivity(), AnkoLogger,
     // check if user is already logged in
     private fun isUserLoggedIn() {
         if(sharedPreferences.getString("userid", "") != ""){
-            val homeFragment: Fragment = HomeFragment.newInstance()
-            fragmentReplaceHandler(homeFragment)
 
             // display bottom nav drawer if user is logged in
             if(BuildConfig.FLAVOR.equals("manager")) {
+                val homeFragment: Fragment = HomeFragment.newInstance()
+                fragmentReplaceHandler(homeFragment)
                 val bottomNavFragment = BottomNavFragment.newInstance()
                 bottomNavAddHandler(bottomNavFragment)
             }else{
+                val showTaskListFragment: Fragment = ShowTaskListFragment()
+                fragmentReplaceHandler(showTaskListFragment)
                 val bottomNavFragmentDeveloper = BottomNavFragmentDeveloper.newInstance()
                 bottomNavAddHandler(bottomNavFragmentDeveloper)
             }
