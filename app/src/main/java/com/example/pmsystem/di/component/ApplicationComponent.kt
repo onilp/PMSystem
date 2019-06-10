@@ -7,6 +7,7 @@ import com.example.pmsystem.developer.subtaskdeveloper.subtaskdetail.SubTaskDeta
 import com.example.pmsystem.developer.subtaskdeveloper.subtaskdetail.SubTaskDetailViewModel
 import com.example.pmsystem.developer.subtaskdeveloper.subtasklist.SubTaskDeveloperListFragment
 import com.example.pmsystem.developer.subtaskdeveloper.subtasklist.SubTaskDeveloperListViewModel
+import com.example.pmsystem.developer.updatesubtask.UpdateSubTaskFragment
 import com.example.pmsystem.di.module.RetrofitModule
 import com.example.pmsystem.di.module.SharedPreferencesModule
 import com.example.pmsystem.manager.employeelist.EmployeeListViewModel
@@ -34,5 +35,6 @@ interface ApplicationComponent {
     fun inject(subTaskListViewModel: SubTaskDeveloperListViewModel)
     fun inject(subTaskListViewModel: com.example.pmsystem.manager.subtask.SubTaskListViewModel)
     fun inject(subTaskDeveloperListFragment: SubTaskDeveloperListFragment)
+    fun inject(updateSubTaskFragment: UpdateSubTaskFragment)
     fun inject(showtaskListPresenter: ShowtaskListPresenter)
 }

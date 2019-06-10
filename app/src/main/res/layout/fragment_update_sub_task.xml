@@ -6,35 +6,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp">
 
-    <EditText
-        android:id="@+id/et_ut_taskId"
+    <TextView
+        android:id="@+id/tv_ut_taskId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Task Id: "
         app:layout_constraintTop_toTopOf="parent"/>
-    <EditText
-        android:id="@+id/et_ut_subtaskId"
+    <TextView
+        android:id="@+id/tv_ut_subtaskId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="SubTask ID: "
-        app:layout_constraintTop_toBottomOf="@+id/et_ut_taskId"/>
-    <EditText
-        android:id="@+id/et_ut_projectId"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ut_taskId"/>
+    <TextView
+        android:id="@+id/tv_ut_projectId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Project Id: "
-        app:layout_constraintTop_toBottomOf="@+id/et_ut_subtaskId"/>
-    <EditText
-        android:id="@+id/et_ut_userId"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ut_subtaskId"/>
+    <TextView
+        android:id="@+id/tv_ust_userId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="User Id: "
-        app:layout_constraintTop_toBottomOf="@+id/et_ut_projectId"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_ut_projectId"/>
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_update_status"
-        app:layout_constraintTop_toBottomOf="@+id/et_ut_userId"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ust_userId"
         android:layout_marginTop="5dp"
         />
 
