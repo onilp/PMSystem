@@ -1,5 +1,6 @@
 package com.example.pmsystem.manager.assign
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.*
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,10 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import com.example.pmsystem.R
 import com.example.pmsystem.manager.employeelist.EmployeeListViewModel
 import com.example.pmsystem.manager.subtask.SubTaskListViewModel
@@ -26,40 +24,9 @@ import com.example.pmsystem.project.home.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_assign.*
 import kotlinx.android.synthetic.main.fragment_assign.view.*
 
-class AssignFragment : Fragment(), View.OnClickListener {
+class AssignFragment : Fragment() {
 
-    override fun onClick(v: View?) {
-        val assignViewModel = ViewModelProviders.of(this).get(AssignViewModel::class.java)
-        var assingPTSLiveData = assignViewModel.assignPTS("242", "69", "192", "137")
-        /* assingPTSLiveData.observe( this,
-             Observer{
-             it-> Log.e("AssignFrag--PTS", it!!.msg.get(0))
-         })*/
-        //TODO remove this hardcoded user id. get it from shared preference
-        //
-        val userid: String = "69"
-
-        if (!projectIdSelected.equals("") && !taskIdSelected.equals("") && !subTaskIdSelected.equals("")) {
-            var assignLiveData = assignViewModel.assignPTS(projectIdSelected, userid, taskIdSelected, subTaskIdSelected)
-            assignLiveData.observe(this, Observer { it ->
-                Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
-            })
-            var assignTasksLiveData = assignViewModel.assignTasks(projectIdSelected, taskIdSelected, userid)
-            assignTasksLiveData.observe(this, Observer { it ->
-                Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
-            })
-
-            var assignSubTasksLiveData = assignViewModel.assignSubTasks(projectIdSelected, taskIdSelected, subTaskIdSelected, userid)
-            assignSubTasksLiveData.observe(this,
-                Observer { it ->
-                    Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
-                })
-        } else {
-
-            Toast.makeText(context, "Please Assign Again", Toast.LENGTH_LONG).show()
-        }
-    }
-
+    lateinit var progressDialog : ProgressDialog
     var projectList: ArrayList<String> = ArrayList()
     var tasksList: ArrayList<String> = ArrayList()
     var subTasksList: ArrayList<String> = ArrayList()
@@ -75,6 +42,7 @@ class AssignFragment : Fragment(), View.OnClickListener {
     var projectIdSelected: String = ""
     var taskIdSelected: String = ""
     var subTaskIdSelected: String = ""
+    var employeeIdSelected : String =""
     var tasksIdList: ArrayList<String> = ArrayList()
     var subTasksIdList: ArrayList<String> = ArrayList()
     var employeeIdList : ArrayList<String> = ArrayList()
@@ -86,6 +54,10 @@ class AssignFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = LayoutInflater.from(this.context).inflate(R.layout.fragment_assign, container, false)
         (activity as? AppCompatActivity)?.supportActionBar?.title = getString(R.string.assign_pts)
+
+        progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Loading data...")
+        progressDialog.show()
 
         projectListSpinner = view.findViewById(R.id.spinner_project_list)
         taskListSpinner = view.findViewById(R.id.spinner_task_list)
@@ -133,14 +105,47 @@ class AssignFragment : Fragment(), View.OnClickListener {
                                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                                     subTaskIdSelected = subTasksIdList.get(position)
                                     loadEmployeeSpinner()
+                                    employeeSpinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+                                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                                            employeeIdSelected = employees.get(position).empid
+                                        }
 
-
-
+                                        override fun onNothingSelected(parent: AdapterView<*>?) {
+                                            Toast.makeText(context, "Please select an Employee", Toast.LENGTH_LONG).show()
+                                        }
+                                    }
                                 }
                             }
                     }
                 }
             }
+        }
+        val assignViewModel = ViewModelProviders.of(this).get(AssignViewModel::class.java)
+        var btn_assign = view.findViewById<Button>(R.id.btn_assign)
+        var btn_assign_task = view.findViewById<Button>(R.id.btn_assign_task)
+        var btn_assign_subtask = view.findViewById<Button>(R.id.btn_assign_subtask)
+
+        btn_assign.setOnClickListener {
+
+            var assignPTSLiveData = assignViewModel.assignPTS(projectIdSelected, employeeIdSelected, taskIdSelected, subTaskIdSelected)
+            assignPTSLiveData.observe( this, Observer{ it->
+                Toast.makeText(context, it!!.msg.get(0),Toast.LENGTH_LONG).show()
+                })
+        }
+        btn_assign_task.setOnClickListener {
+
+            var assignTasksLiveData = assignViewModel.assignTasks(projectIdSelected, taskIdSelected, employeeIdSelected)
+            assignTasksLiveData.observe(this, Observer { it ->
+                Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
+            })
+        }
+        btn_assign_subtask.setOnClickListener {
+
+            var assignSubTasksLiveData = assignViewModel.assignSubTasks(projectIdSelected, taskIdSelected, subTaskIdSelected, employeeIdSelected)
+            assignSubTasksLiveData.observe(this,
+                Observer { it ->
+                    Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
+                })
         }
         return view
     }
@@ -196,6 +201,7 @@ class AssignFragment : Fragment(), View.OnClickListener {
     }
 
     private fun loadEmployeeSpinner(){
+        progressDialog.cancel()
         Log.e("Load employee spinner","Assign")
         var employeeListViewModel = ViewModelProviders.of(this).get(EmployeeListViewModel::class.java)
         var employeeList : LiveData<List<Employee>> = employeeListViewModel.fetchEmployee()
@@ -210,20 +216,10 @@ class AssignFragment : Fragment(), View.OnClickListener {
 
                 var id = it.get(i).empid
                 employeeIdList.add(id)
-
             }
-
             val employeeArrayAdapter = ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,employeesList)
             employeeSpinner.adapter = employeeArrayAdapter
 
         })
     }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        btn_assign.setOnClickListener(this)
-    }
-
-
-
 }

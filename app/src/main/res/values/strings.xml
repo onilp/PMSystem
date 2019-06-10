@@ -72,5 +72,7 @@
     <string name="task_list">Task List</string>
     <string name="assign_pts">Assign</string>
     <string name="sub_task_list">Sub Task List</string>
+    <string name="assign_task">Assign Task</string>
+    <string name="assign_sub_task">Assign Sub Task</string>
 
 </resources>

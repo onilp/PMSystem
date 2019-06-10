@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner_task_list"
         app:layout_constraintTop_toBottomOf="@+id/spinner_project_list"
+        android:layout_marginTop="5dp"
         />
 
     <Spinner
@@ -23,22 +24,43 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner_subtask_list"
         app:layout_constraintTop_toBottomOf="@+id/spinner_task_list"
+        android:layout_marginTop="5dp"
         />
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_employee_list"
         app:layout_constraintTop_toBottomOf="@+id/spinner_subtask_list"
+        android:layout_marginTop="5dp"
         />
 
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Assign"
+        android:text="@string/assign_pts"
         app:layout_constraintTop_toBottomOf="@id/spinner_employee_list"
         style="@style/AppButton"
         android:textAllCaps="false"
-        android:id="@+id/btn_assign"/>
+        android:id="@+id/btn_assign"
+        android:layout_marginTop="5dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/assign_task"
+        app:layout_constraintTop_toBottomOf="@id/btn_assign"
+        style="@style/AppButton"
+        android:textAllCaps="false"
+        android:id="@+id/btn_assign_task"
+        android:layout_marginTop="5dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/assign_sub_task"
+        app:layout_constraintTop_toBottomOf="@id/btn_assign_task"
+        style="@style/AppButton"
+        android:textAllCaps="false"
+        android:id="@+id/btn_assign_subtask"
+        android:layout_marginTop="5dp"/>
 
 </android.support.constraint.ConstraintLayout>
