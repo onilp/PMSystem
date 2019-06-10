@@ -2,6 +2,7 @@ package com.example.pmsystem.di.component
 
 import com.example.pmsystem.MainActivity
 import com.example.pmsystem.authentication.login.LoginPresenter
+import com.example.pmsystem.developer.showtasklist.ShowtaskListPresenter
 import com.example.pmsystem.di.module.RetrofitModule
 import com.example.pmsystem.di.module.SharedPreferencesModule
 import com.example.pmsystem.manager.employeelist.EmployeeListViewModel
@@ -25,4 +26,5 @@ interface ApplicationComponent {
     fun inject(loginPresenter: LoginPresenter)
     fun inject(bottomNavFragment: BottomNavFragment)
     fun inject(subTaskListViewModel: SubTaskListViewModel)
+    fun inject(showtaskListPresenter: ShowtaskListPresenter)
 }

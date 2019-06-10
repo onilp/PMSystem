@@ -93,7 +93,7 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
     }
 
 */
-    lateinit var recyclerView: RecyclerView
+     lateinit var recyclerView: RecyclerView
      lateinit var myAdapter: SubTaskListAdapter
      private var subTasks : ArrayList<SubTaskListResponse.ProjectSubTask> = ArrayList()
 

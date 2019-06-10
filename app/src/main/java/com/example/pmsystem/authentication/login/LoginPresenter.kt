@@ -46,7 +46,7 @@ class LoginPresenter(var view: LoginContract.View, var context: Context) : Login
             apiInterface.enqueue(object : retrofit2.Callback<LoginResponse>{
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     //Log.e("on response", response.body()!!.userfirstname)
-//                    var sharedPreferences : SharedPreferences = context!!.getSharedPreferences("userPref",Context.MODE_PRIVATE)
+                    var sharedPreferences : SharedPreferences = context!!.getSharedPreferences("userPref",Context.MODE_PRIVATE)
                     val editor: SharedPreferences.Editor = sharedPreferences.edit()
                     editor.putString("userid",response.body()!!.userid)
                     editor.putString("userfirstname",response.body()!!.userfirstname)

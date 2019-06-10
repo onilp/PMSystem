@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.example.pmsystem.authentication.login.LoginFragment
 import com.example.pmsystem.authentication.registration.RegistrationFragment
+import com.example.pmsystem.developer.showtaskdetail.ShowTaskDetailsFragment
+import com.example.pmsystem.developer.showtasklist.ShowTaskListFragment
 import com.example.pmsystem.manager.assign.AssignFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
@@ -62,24 +64,27 @@ class MainActivity : AppCompatActivity(), AnkoLogger,
 
     // check if user is already logged in
     private fun isUserLoggedIn() {
-        if(sharedPreferences.getString("userid", "") != ""){
-            val homeFragment: Fragment = HomeFragment.newInstance()
-            fragmentReplaceHandler(homeFragment)
+//        if(sharedPreferences.getString("userid", "") != ""){
+//            val homeFragment: Fragment = HomeFragment.newInstance()
+//            fragmentReplaceHandler(homeFragment)
+//
+//            // display bottom nav drawer if user is logged in
+//            val bottomNavFragment = BottomNavFragment.newInstance()
+//            bottomNavAddHandler(bottomNavFragment)
+//        }else{
+//            fragmentManager = supportFragmentManager
+//            // remove bottom nav fragment if it is on the screen and user is not logged in
+//            val bottomNavFragment: Fragment? = fragmentManager.findFragmentById(R.id.fragment_bottom_nav)
+//            if(bottomNavFragment != null){
+//                fragmentRemoveHandler(bottomNavFragment)
+//            }
+//
+//            val loginFragment: Fragment = LoginFragment()
+//            fragmentReplaceHandler(loginFragment)
+//        }
 
-            // display bottom nav drawer if user is logged in
-            val bottomNavFragment = BottomNavFragment.newInstance()
-            bottomNavAddHandler(bottomNavFragment)
-        }else{
-            fragmentManager = supportFragmentManager
-            // remove bottom nav fragment if it is on the screen and user is not logged in
-            val bottomNavFragment: Fragment? = fragmentManager.findFragmentById(R.id.fragment_bottom_nav)
-            if(bottomNavFragment != null){
-                fragmentRemoveHandler(bottomNavFragment)
-            }
-
-            val loginFragment: Fragment = LoginFragment()
-            fragmentReplaceHandler(loginFragment)
-        }
+        val showTaskListFragment: ShowTaskListFragment = ShowTaskListFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container,showTaskListFragment).addToBackStack(null).commit()
     }
 
     override fun onBottonNavClicked(fragment: Fragment) {

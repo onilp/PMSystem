@@ -149,7 +149,6 @@
                     android:id="@+id/register_login_here_tv"
                     style="@style/AuthMessageTextStyle"
                     android:text="@string/login_here"
-
                     app:layout_constraintStart_toEndOf="@+id/register_alread_a_user_tv"
                     tools:ignore="MissingConstraints" />
 
