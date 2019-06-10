@@ -7,12 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.pmsystem.R
 import com.example.pmsystem.model.ShowTaskListResponse
+import com.example.pmsystem.model.TaskListResponse
 import kotlinx.android.synthetic.main.fragment_show_task_list.view.*
 import kotlinx.android.synthetic.main.item_sub_task_list.view.*
 import kotlinx.android.synthetic.main.show_task_list_item.view.*
 
 class ShowTaskListAdapter(var context: Context, var showtasklists: List<ShowTaskListResponse.ViewTask>)
     : RecyclerView.Adapter<ShowTaskListAdapter.MyViewHolder>(){
+
+
+    lateinit var onItemClick: ((ShowTaskListResponse.ViewTask) -> Unit)
 
 
 
@@ -33,7 +37,7 @@ class ShowTaskListAdapter(var context: Context, var showtasklists: List<ShowTask
 
         holder.bindValue(showtasklists.get(position))
         holder.itemView.setOnClickListener {
-
+            onItemClick.invoke(showtasklists[position])
 
         }
 

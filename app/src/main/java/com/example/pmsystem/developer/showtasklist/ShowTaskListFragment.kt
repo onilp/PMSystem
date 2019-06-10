@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.adapter.ShowTaskListAdapter
+import com.example.pmsystem.developer.showtaskdetail.ShowTaskDetailsFragment
 import com.example.pmsystem.manager.subtask.CreateSubTaskFragment
 import com.example.pmsystem.model.ShowTaskListResponse
 import com.example.pmsystem.model.SubTaskResponse
@@ -40,9 +42,26 @@ class ShowTaskListFragment : Fragment(), ShowTaskListContract.View {
 
         showTaskListAdapter = ShowTaskListAdapter(context!!.applicationContext,showtaskList)
         recyclerView.adapter = showTaskListAdapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        showTaskListAdapter.onItemClick = {showtaskList->
+            val showTaskDetailsFragment = ShowTaskDetailsFragment()
+            val bundle = Bundle()
+            bundle.putString("taskid",showtaskList.taskid)
+            bundle.putString("projectid",showtaskList.projectid)
+            Log.e("show id", showtaskList.taskid+" "+showtaskList.projectid)
+            showTaskDetailsFragment.arguments = bundle
+
+//            activity!!.supportFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_container,showTaskDetailsFragment).addToBackStack(null).commit()
+
+
+            fragmentManager!!.beginTransaction().replace(R.id.fragment_container,showTaskDetailsFragment).addToBackStack(null).commit()
+
+        }
         showTaskListAdapter.notifyDataSetChanged()
 
     }
+
 
 
     override fun onCreateView(
@@ -63,7 +82,6 @@ class ShowTaskListFragment : Fragment(), ShowTaskListContract.View {
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         showtaskListPresenter.viewIsCreated()
     }
-
 
 
     companion object{

@@ -6,7 +6,7 @@ import com.example.pmsystem.model.ShowTaskListResponse
 import com.example.pmsystem.model.SubTaskResponse
 import com.example.pmsystem.model.TaskListResponse
 
-class ShowTaskListContract {
+interface ShowTaskListContract {
 
 
 
