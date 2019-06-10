@@ -126,26 +126,43 @@ class AssignFragment : Fragment() {
         var btn_assign_subtask = view.findViewById<Button>(R.id.btn_assign_subtask)
 
         btn_assign.setOnClickListener {
-
-            var assignPTSLiveData = assignViewModel.assignPTS(projectIdSelected, employeeIdSelected, taskIdSelected, subTaskIdSelected)
-            assignPTSLiveData.observe( this, Observer{ it->
-                Toast.makeText(context, it!!.msg.get(0),Toast.LENGTH_LONG).show()
-                })
-        }
-        btn_assign_task.setOnClickListener {
-
-            var assignTasksLiveData = assignViewModel.assignTasks(projectIdSelected, taskIdSelected, employeeIdSelected)
-            assignTasksLiveData.observe(this, Observer { it ->
-                Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
-            })
-        }
-        btn_assign_subtask.setOnClickListener {
-
-            var assignSubTasksLiveData = assignViewModel.assignSubTasks(projectIdSelected, taskIdSelected, subTaskIdSelected, employeeIdSelected)
-            assignSubTasksLiveData.observe(this,
-                Observer { it ->
+            if (!projectIdSelected.equals("") && !taskIdSelected.equals("") && !subTaskIdSelected.equals("")) {
+                var assignPTSLiveData = assignViewModel.assignPTS(
+                    projectIdSelected,
+                    employeeIdSelected,
+                    taskIdSelected,
+                    subTaskIdSelected
+                )
+                assignPTSLiveData.observe(this, Observer { it ->
                     Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
                 })
+            }
+        }
+        btn_assign_task.setOnClickListener {
+            if (!projectIdSelected.equals("") && !taskIdSelected.equals("") && !subTaskIdSelected.equals("")) {
+                var assignTasksLiveData = assignViewModel.assignTasks(
+                    projectIdSelected,
+                    taskIdSelected,
+                    employeeIdSelected
+                )
+                assignTasksLiveData.observe(this, Observer { it ->
+                    Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
+                })
+            }
+        }
+        btn_assign_subtask.setOnClickListener {
+            if (!projectIdSelected.equals("") && !taskIdSelected.equals("") && !subTaskIdSelected.equals("")) {
+                var assignSubTasksLiveData = assignViewModel.assignSubTasks(
+                    projectIdSelected,
+                    taskIdSelected,
+                    subTaskIdSelected,
+                    employeeIdSelected
+                )
+                assignSubTasksLiveData.observe(this,
+                    Observer { it ->
+                        Toast.makeText(context, it!!.msg.get(0), Toast.LENGTH_LONG).show()
+                    })
+            }
         }
         return view
     }

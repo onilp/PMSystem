@@ -12,10 +12,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import com.example.pmsystem.R
 import com.example.pmsystem.adapter.SubTaskListAdapter
 import com.example.pmsystem.adapter.TaskListAdapter
+import com.example.pmsystem.developer.updatesubtask.UpdateSubTaskFragment
 import com.example.pmsystem.manager.task.CreateTaskFragment
 import com.example.pmsystem.manager.task.TaskListViewModel
 import com.example.pmsystem.model.SubTaskListResponse
@@ -96,6 +98,8 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
     lateinit var recyclerView: RecyclerView
      lateinit var myAdapter: SubTaskListAdapter
      private var subTasks : ArrayList<SubTaskListResponse.ProjectSubTask> = ArrayList()
+     private lateinit var btn_createSubTask : Button
+     private lateinit var btn_updateSubTaskStatus : Button
 
      override fun onCreateView(
          inflater: LayoutInflater,
@@ -103,6 +107,8 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
          savedInstanceState: Bundle?
      ): View? {
          var view = inflater.inflate(R.layout.fragment_sub_task_list, container, false)
+         btn_createSubTask = view.findViewById(R.id.btn_create_sub_task)
+         btn_updateSubTaskStatus = view.findViewById(R.id.btn_update_sub_task_status)
          var subTaskListViewModel = ViewModelProviders.of(this).get(SubTaskListViewModel::class.java)
          var subTaskList : LiveData<List<SubTaskListResponse.ProjectSubTask>> = subTaskListViewModel.requestSubTaskList()
 
@@ -117,6 +123,15 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
                  myAdapter.notifyDataSetChanged()
              }
          })
+         btn_createSubTask.setOnClickListener {
+             val fg: Fragment = CreateSubTaskFragment()
+             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, fg)!!.addToBackStack(null)?.commit()
+         }
+
+         btn_updateSubTaskStatus.setOnClickListener {
+             val fg: Fragment = UpdateSubTaskFragment()
+             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, fg)!!.addToBackStack(null)?.commit()
+         }
 
          return view
      }

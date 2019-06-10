@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/et_ut_taskId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task Id: "
+        app:layout_constraintTop_toTopOf="parent"/>
+    <EditText
+        android:id="@+id/et_ut_subtaskId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="SubTask ID: "
+        app:layout_constraintTop_toBottomOf="@+id/et_ut_taskId"/>
+    <EditText
+        android:id="@+id/et_ut_projectId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Project Id: "
+        app:layout_constraintTop_toBottomOf="@+id/et_ut_subtaskId"/>
+    <EditText
+        android:id="@+id/et_ut_userId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User Id: "
+        app:layout_constraintTop_toBottomOf="@+id/et_ut_projectId"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_update_status"
+        app:layout_constraintTop_toBottomOf="@+id/et_ut_userId"
+        android:layout_marginTop="5dp"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_subtask_update"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_update_status"
+        android:text="Update"
+        android:layout_marginTop="10dp"/>
+</android.support.constraint.ConstraintLayout>

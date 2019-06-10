@@ -1,6 +1,7 @@
 package com.example.pmsystem.developer.updatesubtask
 
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.ViewModel
 import android.util.Log
 import com.example.pmsystem.model.UpdateSubtask
 import com.example.pmsystem.network.ApiInterface.Companion.getRetrofitInstance
@@ -8,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UpdateSubTaskViewModel {
+class UpdateSubTaskViewModel : ViewModel(){
 
 
     var subtasksResponse = MutableLiveData<UpdateSubtask>()
