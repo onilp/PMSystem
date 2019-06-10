@@ -45,8 +45,8 @@ class SubTaskDeveloperListFragment : Fragment() {
 
         init()
 
-//        subTaskDeveloperListLiveData = subTaskDeveloperListViewModel.fetchSubTaskListDeveloper(sharedPreferences.getString("userid", "")!!, "149")
-        subTaskDeveloperListLiveData = subTaskDeveloperListViewModel.fetchSubTaskListDeveloper("70", "149")
+        subTaskDeveloperListLiveData = subTaskDeveloperListViewModel.fetchSubTaskListDeveloper(sharedPreferences.getString("userid", "")!!, arguments!!.getString("taskid", ""))
+//        subTaskDeveloperListLiveData = subTaskDeveloperListViewModel.fetchSubTaskListDeveloper("70", "149")
 
 
         subTaskDeveloperListLiveData.observe(this, Observer{

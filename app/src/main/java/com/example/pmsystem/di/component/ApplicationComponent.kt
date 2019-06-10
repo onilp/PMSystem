@@ -2,6 +2,7 @@ package com.example.pmsystem.di.component
 
 import com.example.pmsystem.MainActivity
 import com.example.pmsystem.authentication.login.LoginPresenter
+import com.example.pmsystem.developer.showtasklist.ShowtaskListPresenter
 import com.example.pmsystem.developer.subtaskdeveloper.subtaskdetail.SubTaskDetailFragment
 import com.example.pmsystem.developer.subtaskdeveloper.subtaskdetail.SubTaskDetailViewModel
 import com.example.pmsystem.developer.subtaskdeveloper.subtasklist.SubTaskDeveloperListFragment
@@ -33,4 +34,5 @@ interface ApplicationComponent {
     fun inject(subTaskListViewModel: SubTaskDeveloperListViewModel)
     fun inject(subTaskListViewModel: com.example.pmsystem.manager.subtask.SubTaskListViewModel)
     fun inject(subTaskDeveloperListFragment: SubTaskDeveloperListFragment)
+    fun inject(showtaskListPresenter: ShowtaskListPresenter)
 }

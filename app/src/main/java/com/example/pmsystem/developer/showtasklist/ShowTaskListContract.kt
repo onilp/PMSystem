@@ -8,6 +8,8 @@ import com.example.pmsystem.model.TaskListResponse
 
 interface ShowTaskListContract {
 
+
+
     interface View{
         fun showTaskListError(message: String?)
         fun passDataToAdapter(showtaskList: List<ShowTaskListResponse.ViewTask>) {
@@ -16,6 +18,7 @@ interface ShowTaskListContract {
 
     interface Presenter{
         fun viewIsCreated()
+
     }
 
 

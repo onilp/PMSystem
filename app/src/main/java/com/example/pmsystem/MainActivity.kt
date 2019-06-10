@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager
 import com.example.pmsystem.authentication.login.LoginFragment
 import com.example.pmsystem.authentication.registration.RegistrationFragment
 import com.example.pmsystem.developer.subtaskdeveloper.subtasklist.SubTaskDeveloperListFragment
+import com.example.pmsystem.developer.showtaskdetail.ShowTaskDetailsFragment
+import com.example.pmsystem.developer.showtasklist.ShowTaskListFragment
 import com.example.pmsystem.manager.assign.AssignFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener

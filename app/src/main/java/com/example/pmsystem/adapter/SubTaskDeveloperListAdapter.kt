@@ -2,6 +2,7 @@ package com.example.pmsystem.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class SubTaskDeveloperListAdapter(private val context: Context, private val subT
     }
 
     override fun getItemCount(): Int {
+        Log.d("RecyclerView", subTaskDeveloperList.size.toString())
         return subTaskDeveloperList.size
     }
 

@@ -45,10 +45,17 @@ class CreateSubTaskFragment : Fragment(), CreateSubTaskContract.View {
             var sub_task_name: String = create_project_sub_task_name_tiet.text.toString()
             var sub_task_status: String = create_project_sub_task_status_tiet.text.toString()
             var sub_task_desc: String = create_project_sub_task_desc_tiet.text.toString()
-            var start_date: String = create_project_start_date_tiet.text.toString()
+            var start_date: String = create_project_sub_task_start_date_tiet.text.toString()
             var end_date: String = create_project_sub_task_end_date_tiet.toString()
 
-          createSubTaskPresenter.buttonClicked(project_id,task_id,sub_task_name,sub_task_status,sub_task_desc,start_date,end_date)
+          createSubTaskPresenter.buttonClicked(
+              project_id,
+              task_id,
+              sub_task_name,
+              sub_task_status,
+              sub_task_desc,
+              start_date,
+              end_date)
 
 
         }
