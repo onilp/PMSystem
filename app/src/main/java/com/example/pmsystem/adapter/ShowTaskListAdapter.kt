@@ -18,7 +18,7 @@ class ShowTaskListAdapter(var context: Context, var showtasklists: List<ShowTask
 
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
-        var view = LayoutInflater.from(p0.context).inflate(R.layout.show_task_list_item, p0, false)
+        val view = LayoutInflater.from(p0.context).inflate(R.layout.show_task_list_item, p0, false)
         return ShowTaskListAdapter.MyViewHolder(view)
 
     }

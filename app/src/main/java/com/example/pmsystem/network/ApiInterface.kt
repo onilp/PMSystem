@@ -4,8 +4,9 @@ import com.example.pmsystem.model.*
 import com.example.pmsystem.model.createproject.CreateProjectResponse
 import com.example.pmsystem.model.project.ProjectListResponse
 import io.reactivex.Observable
-import com.example.pmsystem.model.*
 import com.example.pmsystem.model.employee.EmployeeResponse
+import com.example.pmsystem.model.subtaskdetaildeveloper.SubTaskDetailDeveloperResponse
+import com.example.pmsystem.model.subtaskdeveloperlist.SubTaskDeveloperListResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -100,8 +101,11 @@ interface ApiInterface {
     @GET("pms_employee_list.php")
     fun getEmployeeList(): Observable<EmployeeResponse>
 
-    @GET
-    fun getSubTaskListDeveloper(@Query("user_id") user_id: String, @Query("taskid") taskid: String): Observable<SubTaskListResponse>
+    @GET("pms_view_subtask.php?")
+    fun fetchSubTaskListDeveloper(@Query("user_id") user_id: String, @Query("taskid") taskid: String): Observable<SubTaskDeveloperListResponse>
+
+    @GET("pms_view_sub_task_deatil.php?")
+    fun fetchSubTaskDetail(@Query("taskid") taskid: String, @Query("subtask_id") subtask_id: String, @Query("project_id") project_id: String): Observable<SubTaskDetailDeveloperResponse>
 
     @GET("pms_edit_sub_task_status.php")
     fun updateSubtask(@Query("taskid") taskid : String,

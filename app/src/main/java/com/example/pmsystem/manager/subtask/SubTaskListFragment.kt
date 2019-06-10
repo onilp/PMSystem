@@ -89,8 +89,8 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
     }
 
     companion object{
-        fun newInstance(): SubTaskListFragment {
-            return SubTaskListFragment()
+        fun newInstance(): SubTaskDeveloperListFragment {
+            return SubTaskDeveloperListFragment()
         }
     }
 

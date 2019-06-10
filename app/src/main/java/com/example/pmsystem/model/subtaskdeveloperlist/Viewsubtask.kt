@@ -1,4 +1,4 @@
-package com.example.pmsystem.model.subtasklistdeveloper
+package com.example.pmsystem.model.subtaskdeveloperlist
 
 data class Viewsubtask(
     val projectid: String,

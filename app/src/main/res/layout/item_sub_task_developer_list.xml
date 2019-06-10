@@ -1,88 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
-        app:cardUseCompatPadding="true">
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/project_id_colon"/>
+                    android:textColor="@android:color/black"
+                    android:text="Project ID: "/>
 
                 <TextView
-                    android:id="@+id/showprojectid"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dip"
-                    android:paddingTop="6dip"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/black"
+                    android:id="@+id/sub_task_developer_project_id_tv"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/task_id_colon"/>
+                    android:textColor="@android:color/black"
+                    android:text="Task ID: "/>
 
                 <TextView
-                    android:id="@+id/showtaskid"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="2dip"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@android:color/black"
+                    android:id="@+id/sub_task_developer_task_id_tv"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/sub_task_id_colon"/>
+                    android:textColor="@android:color/black"
+                    android:text="Sub Task ID: "/>
 
                 <TextView
-                    android:id="@+id/showsubtaskid"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#5d5d5d"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/black"
+                    android:id="@+id/sub_task_developer_sub_task_id_tv"/>
             </LinearLayout>
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

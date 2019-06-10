@@ -1,4 +1,4 @@
-package com.example.pmsystem.project.createproject
+package com.example.pmsystem.manager.createproject
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.MutableLiveData

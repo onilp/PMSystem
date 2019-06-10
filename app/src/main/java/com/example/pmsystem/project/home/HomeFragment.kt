@@ -16,8 +16,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.pmsystem.BuildConfig
 import com.example.pmsystem.R
 import com.example.pmsystem.adapter.ProjectRecyclerViewAdapter
+import com.example.pmsystem.developer.showtasklist.ShowTaskListFragment
 import com.example.pmsystem.manager.task.TaskListFragment
 import com.example.pmsystem.model.project.ProjectListResponse
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -65,12 +67,12 @@ class HomeFragment : Fragment() {
                 )
                 projectRecyclerView.adapter = projectAdapter
 
-                projectAdapter.onItemClick = { it ->
-                    val taskListFragment = TaskListFragment()
-                    val bundle = Bundle()
-                    bundle.putString("projectID", it.id)
-                    taskListFragment.arguments = bundle
-                    activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, taskListFragment).addToBackStack(null).commit()
+                projectAdapter.onItemClick = {
+                    if(BuildConfig.FLAVOR.equals("manager")){
+                        activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, TaskListFragment()).addToBackStack(null).commit()
+                    }else{
+                        activity!!.supportFragmentManager.beginTransaction().replace(R.id.fragment_container, ShowTaskListFragment()).addToBackStack(null).commit()
+                    }
                 }
             }
         })

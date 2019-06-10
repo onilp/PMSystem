@@ -20,7 +20,7 @@ import com.example.pmsystem.R
 import com.example.pmsystem.authentication.registration.RegistrationFragment
 import com.example.pmsystem.model.LoginResponse
 import com.example.pmsystem.network.ApiInterface
-import com.example.pmsystem.project.createproject.CreateProjectFragment
+import com.example.pmsystem.manager.createproject.CreateProjectFragment
 import com.example.pmsystem.project.home.HomeFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.jetbrains.anko.AnkoComponent

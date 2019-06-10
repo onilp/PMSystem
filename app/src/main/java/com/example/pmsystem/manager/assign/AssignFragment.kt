@@ -19,10 +19,7 @@ import com.example.pmsystem.model.TaskListResponse
 import com.example.pmsystem.model.employee.Employee
 import com.example.pmsystem.model.project.Project
 import com.example.pmsystem.model.project.ProjectListResponse
-import com.example.pmsystem.model.subtasklistdeveloper.SubTaskListDeveloperResponse
 import com.example.pmsystem.project.home.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_assign.*
-import kotlinx.android.synthetic.main.fragment_assign.view.*
 
 class AssignFragment : Fragment() {
 

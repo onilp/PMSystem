@@ -6,9 +6,7 @@ import com.example.pmsystem.model.ShowTaskListResponse
 import com.example.pmsystem.model.SubTaskResponse
 import com.example.pmsystem.model.TaskListResponse
 
-class ShowTaskListContract {
-
-
+interface ShowTaskListContract {
 
     interface View{
         fun showTaskListError(message: String?)
@@ -18,7 +16,6 @@ class ShowTaskListContract {
 
     interface Presenter{
         fun viewIsCreated()
-
     }
 
 

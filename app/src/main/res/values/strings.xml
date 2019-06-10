@@ -75,5 +75,8 @@
     <string name="assign_task">Assign Task</string>
     <string name="assign_sub_task">Assign Sub Task</string>
     <string name="update_sub_task_status">Update Subtask Status</string>
+    <string name="project_id_colon">Project ID:\u0020</string>
+    <string name="task_id_colon">Task ID:\u0020</string>
+    <string name="sub_task_id_colon">Sub Task ID:\u0020</string>
 
 </resources>

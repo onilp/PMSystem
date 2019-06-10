@@ -18,7 +18,7 @@ import com.example.pmsystem.authentication.login.LoginFragment
 import javax.inject.Inject
 import com.example.pmsystem.manager.assign.AssignFragment
 
-class BottomNavFragment : Fragment() {
+class BottomNavFragmentDeveloper : Fragment() {
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -30,7 +30,7 @@ class BottomNavFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_bottom_nav, container, false)
+        val view = inflater.inflate(R.layout.fragment_bottom_nav_developer, container, false)
 
         MyApplication.component.inject(this)
 
@@ -41,8 +41,8 @@ class BottomNavFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): BottomNavFragment {
-            return BottomNavFragment()
+        fun newInstance(): BottomNavFragmentDeveloper {
+            return BottomNavFragmentDeveloper()
         }
     }
 
@@ -57,17 +57,6 @@ class BottomNavFragment : Fragment() {
 
                     // this line is required so that the animation works on selected
                     return@OnNavigationItemSelectedListener false
-                }
-                R.id.nav_create_project -> {
-                    val createProjectFragment =
-                        CreateProjectFragment.newInstance()
-                    bottomNavClickListener.onBottonNavClicked(createProjectFragment)
-                    return@OnNavigationItemSelectedListener false
-                }
-                R.id.nav_assign -> {
-                    val assignFragment = AssignFragment()
-                    bottomNavClickListener.onBottonNavClicked(assignFragment)
-                    return@OnNavigationItemSelectedListener true
                 }
                 R.id.nav_signout -> {
                     sharedPreferences.edit().clear().apply()

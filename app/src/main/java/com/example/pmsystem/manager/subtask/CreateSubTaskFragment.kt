@@ -14,7 +14,7 @@ import com.example.pmsystem.R
 import com.example.pmsystem.manager.task.CreateTaskPresenter
 import com.example.pmsystem.manager.task.TaskListFragment
 import com.example.pmsystem.model.SubTaskResponse
-import com.example.pmsystem.project.createproject.CreateProjectFragment
+import com.example.pmsystem.manager.createproject.CreateProjectFragment
 import kotlinx.android.synthetic.main.fragment_create_project.*
 import kotlinx.android.synthetic.main.fragment_create_sub_task.*
 import kotlinx.android.synthetic.main.fragment_create_sub_task.view.*

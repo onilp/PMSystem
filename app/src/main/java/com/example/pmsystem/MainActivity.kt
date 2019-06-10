@@ -7,10 +7,12 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import com.example.pmsystem.authentication.login.LoginFragment
 import com.example.pmsystem.authentication.registration.RegistrationFragment
+import com.example.pmsystem.developer.subtaskdeveloper.subtasklist.SubTaskDeveloperListFragment
 import com.example.pmsystem.manager.assign.AssignFragment
 import com.example.pmsystem.project.home.HomeFragment
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavClickListener
 import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragment
+import com.example.pmsystem.util.bottomnavigationdrawer.BottomNavFragmentDeveloper
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.debug
 import javax.inject.Inject
@@ -67,8 +69,13 @@ class MainActivity : AppCompatActivity(), AnkoLogger,
             fragmentReplaceHandler(homeFragment)
 
             // display bottom nav drawer if user is logged in
-            val bottomNavFragment = BottomNavFragment.newInstance()
-            bottomNavAddHandler(bottomNavFragment)
+            if(BuildConfig.FLAVOR.equals("manager")) {
+                val bottomNavFragment = BottomNavFragment.newInstance()
+                bottomNavAddHandler(bottomNavFragment)
+            }else{
+                val bottomNavFragmentDeveloper = BottomNavFragmentDeveloper.newInstance()
+                bottomNavAddHandler(bottomNavFragmentDeveloper)
+            }
         }else{
             fragmentManager = supportFragmentManager
             // remove bottom nav fragment if it is on the screen and user is not logged in
@@ -80,6 +87,7 @@ class MainActivity : AppCompatActivity(), AnkoLogger,
             val loginFragment: Fragment = LoginFragment()
             fragmentReplaceHandler(loginFragment)
         }
+
     }
 
     override fun onBottonNavClicked(fragment: Fragment) {
