@@ -17,6 +17,8 @@ import com.example.pmsystem.manager.subtask.SubTaskListFragment
 import com.example.pmsystem.model.TaskListResponse
 import kotlinx.android.synthetic.main.fragment_task_list.view.*
 import org.jetbrains.anko.AnkoLogger
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TaskListFragment : Fragment(),  AnkoLogger {
 
@@ -41,6 +43,7 @@ class TaskListFragment : Fragment(),  AnkoLogger {
                     for(i in 0 until it.size) {
                         tasks.add(it.get(i))
                     }
+                    tasks.reverse()
                     myAdapter = TaskListAdapter(context!!.applicationContext, tasks)
                     recyclerView.adapter = myAdapter
                     myAdapter.onItemClick = {it ->

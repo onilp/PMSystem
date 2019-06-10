@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
                 no_project_tv.visibility = View.GONE
                 projectRecyclerView.visibility = View.VISIBLE
                 projectAdapter = ProjectRecyclerViewAdapter(
-                    context!!, it.projects.toList()
+                    context!!, it.projects.toList().asReversed()
                 )
                 projectRecyclerView.adapter = projectAdapter
 

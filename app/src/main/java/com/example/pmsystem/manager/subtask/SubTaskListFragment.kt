@@ -118,6 +118,7 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
                  for(i in 0 until it.size) {
                      subTasks.add(it.get(i))
                  }
+                 subTasks.reverse()
                  myAdapter = SubTaskListAdapter(context!!.applicationContext, subTasks)
                  recyclerView.adapter = myAdapter
                  myAdapter.notifyDataSetChanged()
@@ -129,6 +130,7 @@ class SubTaskListFragment : Fragment()//, SubTaskListContract.View
          }
 
          btn_updateSubTaskStatus.setOnClickListener {
+
              val fg: Fragment = UpdateSubTaskFragment()
              activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.fragment_container, fg)!!.addToBackStack(null)?.commit()
          }
